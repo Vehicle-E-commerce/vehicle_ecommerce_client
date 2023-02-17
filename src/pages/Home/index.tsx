@@ -1,16 +1,15 @@
 import React from "react";
 import { Container  } from "./styles";
+import Header from "../../components/Header";
 
-interface Props {}
+interface Props {
+    toggleTheme(): void;
+}
 
-const Home: React.FC<Props> = () => {
+const Home: React.FC<Props> = ({toggleTheme}) => {
     return(
         <Container>
-            Hello Team!
-            commit 1
-            commit 2
-            commit 3
-
+            <Header toggleTheme={toggleTheme} />
         </Container>
     );
 };

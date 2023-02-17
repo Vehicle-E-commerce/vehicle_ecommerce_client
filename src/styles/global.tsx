@@ -50,7 +50,7 @@ export default createGlobalStyle`
 html, body {
     height: 100%;
     width: 100%;
-    background-color: var(--random11);
+    background-color: ${(props)=> props.theme.colors.background};
     font-size: 14px;
     color: var(--random12);
     font-family: sans-serif;
