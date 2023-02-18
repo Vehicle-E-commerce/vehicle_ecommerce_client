@@ -12,6 +12,12 @@ export const Container = styled.div`
 `
 
 export const Title = styled.h1`
+  background: linear-gradient(90deg, ${(props) => props.theme.colors.text} 0%, rgba(69,41,230,1) 35%);
+  /* Definir que o gradient deve ser aplicado ao text-overflow. */
+  /* Necessário aplicar background-clip de forma padrão, para garantir a compatibilidade dos navegadores */
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
     
 `
 

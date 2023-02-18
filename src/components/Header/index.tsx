@@ -1,18 +1,14 @@
 import React, {useContext, useState} from "react";
-import { Container, Title, VerticalSwitchContainer} from "./styled";
 import Switch from  'react-switch';
-import { ThemeContext } from "styled-components";
 import { shade } from 'polished'
 import MenuMobile from "../MenuMobile";
 
-interface Props {
-    toggleTheme(): void;
+import { Container, Title, VerticalSwitchContainer} from "./styled";
+import { ThemeContext } from "styled-components";
+import { ThemesContext } from "../../contexts/Themes";
 
-}
-
-
-
-const Header: React.FC<Props> = ({toggleTheme}) => {
+const Header: React.FC = () => {
+    const {toggleTheme} = useContext(ThemesContext)
     const { colors, title } = useContext(ThemeContext)
     const [menuMobVisible, setMenuMobVisible] = useState(false)
 
@@ -29,15 +25,13 @@ const Header: React.FC<Props> = ({toggleTheme}) => {
                     handleDiameter={10}
                     offHandleColor={shade(0.13, '#fff')}
                     offColor={shade(0.17, colors.primary)}
-                    onColor='#fff'
-                />
+                    onColor='#fff'  />
             </VerticalSwitchContainer>
-            <Title> Motors shop</Title>
+            <Title> Motors shop </Title>
             <MenuMobile
                 menuMobVisible={menuMobVisible}
                 setMenuMobVisible={setMenuMobVisible}
             />
-            
         </Container>
     )
 };
