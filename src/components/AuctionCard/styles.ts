@@ -20,8 +20,10 @@ export const ContainerAuction = styled.li`
     border-radius: 3px 3px 0 0;
 
     background: linear-gradient(180deg, rgba(0, 0, 0, 0.29) 0%, #000000 100%);
+    transition: 1s;
 
     :hover {
+      transition: 1s;
       background: linear-gradient(180deg, rgba(0, 0, 0, 0.71) 0%, #000000 100%);
     }
     
