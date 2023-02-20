@@ -11,13 +11,7 @@ import { IconBaseProps } from "react-icons";
 import MenuMobile from "../MenuMobile";
 import Button from "../Button";
 
-interface Props extends IconBaseProps {
-    menuMobVisible: boolean;
-    setMenuMobVisible(value:boolean): void;
-    
-}
-
-const Header: React.FC<Props> = () => {
+const Header: React.FC = () => {
     const {toggleTheme} = useContext(ThemesContext)
     const { colors, title } = useContext(ThemeContext)
     const [menuMobVisible, setMenuMobVisible] = useState(false)
