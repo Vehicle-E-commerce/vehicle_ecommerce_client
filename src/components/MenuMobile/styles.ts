@@ -38,10 +38,8 @@ export const Container = styled.div<Props>`
         }
         .opem_menu {
         display: none
-    }
-        
-`}
- 
+        }
+    `}
 `;
 
 export const Navegacao = styled.nav<Props>`
@@ -54,12 +52,10 @@ export const Navegacao = styled.nav<Props>`
     flex-direction: column;
     left: -10;
     
-  
     ${({isVisible})=> !isVisible && css `
         display: none;
         pointer-events: auto;
     `}
-
 `
 
 export const Cont = styled.div<Props>`
@@ -85,7 +81,5 @@ export const Cont = styled.div<Props>`
         color: ${(props) => props.theme.colors.text};
         text-decoration: none;
         margin: 10px 0px 0px 15px;
-
     }
-   
 `

@@ -24,7 +24,5 @@ export const StyledButton = styled.button<Props>`
     
     &:hover {
         filter: brightness(110%);
-    }
-    
-    
+    } 
 `;

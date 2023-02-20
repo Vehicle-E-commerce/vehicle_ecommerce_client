@@ -16,6 +16,9 @@ interface Props extends IconBaseProps {
 const MenuMobile: React.FC<Props> = ({menuMobVisible, setMenuMobVisible}) => {
     // const {user, auth} = useContext(AuthContext)
     const auth = true
+    const user = {
+        is_Advertiser: false
+    }
 
     if (auth) {
         return (
@@ -26,7 +29,11 @@ const MenuMobile: React.FC<Props> = ({menuMobVisible, setMenuMobVisible}) => {
                     <Cont height={'184px'} borderRadius={'13px'}>
                         <a href="#">Editar Perfil</a>
                         <a href="#">Editar endereço</a>
-                        <a href="#">Meus Anúncios</a>
+                        {user.is_Advertiser ? (
+                            <a>Meus anúncios</a>
+                        ):(
+                            <a>Minhas Compras</a>
+                        )}
                         <a href="#">Sair</a>
                     </Cont>
                     {/* <Cont height={'236px'}>

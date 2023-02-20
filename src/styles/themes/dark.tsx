@@ -6,8 +6,8 @@ export default {
         secundary: '#5126EA',
         
         
-        background: '#222',
-        text: '#f5f5f5',
+        background: 'rgba(34,32,0,1)',
+        text: 'rgba(253,253,253,1)',
         spanError: "red"
     }
 }
