@@ -1,16 +1,13 @@
 import React from "react";
 import { Container  } from "./styles";
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
 
-interface Props {}
-
-const Home: React.FC<Props> = () => {
+const Home: React.FC = () => {
     return(
         <Container>
-            Hello Team!
-            commit 1
-            commit 2
-            commit 3
-
+            <Header />
+            <Footer />
         </Container>
     );
 };
