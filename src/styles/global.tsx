@@ -24,14 +24,12 @@ export default createGlobalStyle`
     --grey10: #FDFDFD;
     --whiteFixed: #FFFFFF;
 
-
     --alert1: #CD2B31;
     --alert2: #FDD8D8;
     --alert3: #FFE5E5;
     --sucess1: #18794E;
     --sucess1: #CCEBD7ç
     --sucess1: #DDF3E4;
-
 
     --random1: #E34D8C;
     --random2: #C04277;
@@ -80,7 +78,7 @@ body {
   color: var(--random12);
   font-family: sans-serif;
 }
-ol, ul {
+ol, ul, li {
 	list-style: none;
 }
 blockquote, q {
