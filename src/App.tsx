@@ -1,15 +1,16 @@
-import Home from "./pages/Home"
+import React from "react";
 import GlobalStyle from './styles/global';
+import Home from "./pages/Home";
 
-function App() {
+
+const App = () => {
 
   return (
     <>
-      <GlobalStyle/>
-      <Home/>
+      <GlobalStyle />
+      <Home  />
     </>
   )
 }
 
-export default App
-
+export default App;

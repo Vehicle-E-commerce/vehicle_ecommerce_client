@@ -1,3 +1,16 @@
-import React from "react";
+import { ReactNode } from "react";
+import { ThemesProvider } from "./Themes";
 
-const Repo = ""
+interface Props {
+    children: ReactNode
+}
+ 
+const Providers: React.FC<Props> = ({ children }) => { 
+    return(
+ 	    <ThemesProvider>
+            {children}
+        </ThemesProvider> 
+    )
+}; 
+
+export default Providers;

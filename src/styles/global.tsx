@@ -6,10 +6,10 @@ export default createGlobalStyle`
     width: 100%;
 }
 :root {
-    --brand1: #4529E6
-    --brand2: #5126EA
-    --brand3: #B0A6F0
-    --brand4: #EDEAFD
+    --brand1: #4529E6;
+    --brand2: #5126EA;
+    --brand3: #B0A6F0;
+    --brand4: #EDEAFD;
 
     --grey0: #0B0D0D;
     --grey1: #212529;
@@ -17,6 +17,13 @@ export default createGlobalStyle`
     --grey3: #868E96;
     --grey4: #ADB5BD;
     --grey5: #CED4DA;
+    --grey6: #DEE2E6;
+    --grey7: #E9ECEF;
+    --grey8: #F1F3F5;
+    --grey9: #F8F9FA;
+    --grey10: #FDFDFD;
+    --whiteFixed: #FFFFFF;
+
 
     --alert1: #CD2B31;
     --alert2: #FDD8D8;
@@ -69,6 +76,9 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	line-height: 1;
+  background-color: ${(props)=> props.theme.colors.background};
+  color: var(--random12);
+  font-family: sans-serif;
 }
 ol, ul {
 	list-style: none;

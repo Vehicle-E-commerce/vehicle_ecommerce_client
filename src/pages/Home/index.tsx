@@ -1,16 +1,11 @@
 import React from "react";
 import { Container  } from "./styles";
+import Header from "../../components/Header";
 
-interface Props {}
-
-const Home: React.FC<Props> = () => {
+const Home: React.FC = () => {
     return(
         <Container>
-            Hello Team!
-            commit 1
-            commit 2
-            commit 3
-
+            <Header  />
         </Container>
     );
 };
