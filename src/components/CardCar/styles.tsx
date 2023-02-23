@@ -14,8 +14,8 @@ export const CardCar = styled.li`
     display: flex;
     justify-content: center;
     width: 100%;
-    border: 1px solid var(--grey6);
-    background-color: var(--grey6);
+    border: 1px solid var(--grey7);
+    background-color: var(--grey7);
     
     :hover {
 
@@ -85,7 +85,7 @@ export const CardCar = styled.li`
       gap: 10px;
 
       span {
-        background-color: var(--grey6);
+        background-color: var(--grey7);
         border-radius: 3px;
         color: var(--brand2);
         font-size: 13px;
