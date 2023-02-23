@@ -17,7 +17,12 @@ export default createGlobalStyle`
     --grey3: #868E96;
     --grey4: #ADB5BD;
     --grey5: #CED4DA;
-    --grey6: #E9ECEF;
+    --grey6: #DEE2E6;
+    --grey7: #E9ECEF;
+    --grey8: #F1F3F5;
+    --grey9: #F8F9FA;
+    --grey10: #FDFDFD;
+    --whiteFixed: #FFFFFF;
 
     --alert1: #CD2B31;
     --alert2: #FDD8D8;
@@ -25,7 +30,6 @@ export default createGlobalStyle`
     --sucess1: #18794E;
     --sucess1: #CCEBD7ç
     --sucess1: #DDF3E4;
-
 
     --random1: #E34D8C;
     --random2: #C04277;
@@ -70,8 +74,11 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	line-height: 1;
+  background-color: ${(props)=> props.theme.colors.background};
+  color: var(--random12);
+  font-family: sans-serif;
 }
-ol, ul {
+ol, ul, li {
 	list-style: none;
 }
 blockquote, q {
