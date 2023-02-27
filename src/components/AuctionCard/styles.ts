@@ -6,8 +6,6 @@ export const ContainerAuction = styled.li`
 
   display: flex;
   flex-direction: column;
-
-  margin: 0 auto;
   
 
   section {
@@ -23,8 +21,8 @@ export const ContainerAuction = styled.li`
     transition: 1s;
 
     :hover {
-      transition: 1s;
       background: linear-gradient(180deg, rgba(0, 0, 0, 0.71) 0%, #000000 100%);
+      transition: 1s;
     }
     
     figure {
@@ -54,7 +52,7 @@ export const ContainerAuction = styled.li`
         flex-direction: row;
         align-items: center;
         justify-content: flex-start;
-        width: 80px;
+        width: 90px;
         height: 20px;
         padding: 5px 10px 5px 7px;
         margin: 10px 0 45px 0;
@@ -70,13 +68,14 @@ export const ContainerAuction = styled.li`
         p {
           color: var(--grey1);
           font-size: 12px;
+          
         }
       }
       h2 {
         font-weight: bold;
         font-size: 17px;
       }
-      p {
+      #descrip {
         font-size: 13px;
         text-overflow: ellipsis;
         white-space: nowrap;
@@ -146,18 +145,19 @@ export const ContainerAuction = styled.li`
 
     :hover {
       svg {
-        padding-right: 15px;
+        padding-right: 10px;
         transition: 1s;
       }
     }
 
     span {
       font-size: 16px;
-      padding-left: 25px;
+      padding-left: 20px;
     }
     svg {
+      width: 60px;
       font-size: 30px;
-      padding-right: 25px;
+      padding-right: 30px;
       transition: 1s;
     }
   }

@@ -13,10 +13,10 @@ const AuctionCard = () => {
         <nav>
           <div className='box-hour'>
             <BsClock/>
-            <p>01:58:00</p>
+            <p >01:58:00</p>
           </div>
           <h2>Mercedes Benz A 200 CGI ADVANCE SEDAN Mercedes Benz A 200 </h2>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus laborum saepe labore officia quasi voluptates. Eius nam alias commodi quibusdam qui eveniet minima, eaque, quis dolores dolorem consectetur, recusandae aliquam.</p>
+          <p id='descrip'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus laborum saepe labore officia quasi voluptates. Eius nam alias commodi quibusdam qui eveniet minima, eaque, quis dolores dolorem consectetur, recusandae aliquam.</p>
           <div className='box-user'>
             <h3>R</h3>
             <p>Rodrigo Tavares</p>

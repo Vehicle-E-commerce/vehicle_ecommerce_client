@@ -9,7 +9,7 @@ interface Props {
 export const Container = styled.div`
   top: 0;
   height: 80px;
-  width: 100vw;
+  width: 100%;
   background: ${props => props.theme.colors.background};
   color: ${props => props.theme.colors.text};
   display: flex;

@@ -2,22 +2,36 @@ import styled from "styled-components";
 
 export const MainHome = styled.main`
   width: 100%;
+
+  ul::-webkit-scrollbar {
+    width: 100%;               /* width of the entire scrollbar */
+  }
+
+  ul::-webkit-scrollbar-track {
+    background: var(--whiteFixed);        /* color of the tracking area */
+  }
+
+  ul::-webkit-scrollbar-thumb {
+    background-color: var(--whiteFixed);    /* color of the scroll thumb */
+    border-radius: 20px;       /* roundness of the scroll thumb */
+  }
+
   ul {
     display: flex;
     flex-direction: row;
     max-width: 100%;
     overflow: auto;
+    padding-left: 20px;
   }
   .auction {
     gap: 1.5rem;
   }
-  .cars {
-    gap: 3rem;
+  .cars, .motorBike {
+    gap: 2rem;
     margin-top: 18.3rem;
   }
   .motorBike {
-    gap: 3rem;
-    margin-top: 19.5rem;
+    margin-bottom: 10rem;
   }
 `;
 export const ArticleHome = styled.article`
