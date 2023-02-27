@@ -11,4 +11,10 @@ export const ContainerAuctionList = styled.section`
     font-weight: bold;
     margin-bottom: 4rem;
   }
+  ul {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    overflow-x: auto;
+  }
 `

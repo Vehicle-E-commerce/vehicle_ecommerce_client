@@ -15,23 +15,6 @@ export const MainHome = styled.main`
     background-color: transparent;    /* color of the scroll thumb */
     border-radius: 20px;       /* roundness of the scroll thumb */
   }
-
-  ul {
-    display: flex;
-    flex-direction: row;
-    gap: 2rem;
-    overflow-x: auto;
-  }
-  /* .auction {
-    gap: 1.5rem;
-  }
-  .cars, .motorBike {
-    gap: 2rem;
-    margin-top: 18.3rem;
-  }
-  .motorBike {
-    margin-bottom: 10rem;
-  } */
 `;
 export const ArticleHome = styled.article`
   background-color: var(--brand2);
