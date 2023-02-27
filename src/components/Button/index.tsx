@@ -1,4 +1,3 @@
-import styled from "styled-components";
 import { StyledButton } from "./styles";
 import { ReactNode } from "react";
 
