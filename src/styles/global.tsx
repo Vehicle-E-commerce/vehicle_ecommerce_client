@@ -52,7 +52,7 @@ h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
 del, dfn, em, img, ins, kbd, q, s, samp,
 small, strike, b, sub, sup, tt, var,
-b, u, i, center,
+b, u, i, center,textarea,
 dl, dt, dd, ol, ul, li,
 fieldset, form, label, legend,
 table, caption, tbody, tfoot, thead, tr, th, td,
@@ -74,7 +74,7 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	line-height: 1;
-  background-color: ${(props)=> props.theme.colors.background};
+  background-color: ${(props) => props.theme.colors.background};
   color: var(--random12);
   font-family: sans-serif;
 }

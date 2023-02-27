@@ -1,16 +1,12 @@
-import { ReactNode } from "react";
+import { ReactNode, useState } from "react";
 import { ThemesProvider } from "./Themes";
 
 interface Props {
-    children: ReactNode
+  children: ReactNode;
 }
- 
-const Providers: React.FC<Props> = ({ children }) => { 
-    return(
- 	    <ThemesProvider>
-            {children}
-        </ThemesProvider> 
-    )
-}; 
+
+const Providers: React.FC<Props> = ({ children }) => {
+  return <ThemesProvider>{children}</ThemesProvider>;
+};
 
 export default Providers;
