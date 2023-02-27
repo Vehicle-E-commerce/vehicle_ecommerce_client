@@ -5,6 +5,8 @@ export const CardCar = styled.li`
   flex-direction: column;
   gap: 18px;
 
+  width: 312px;
+  height: 350px;
   min-width: 312px;
   min-height: 350px;
 
