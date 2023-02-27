@@ -3,27 +3,25 @@ import styled from "styled-components";
 export const CardCar = styled.li`
   display: flex;
   flex-direction: column;
-  gap: 13px;
+  gap: 18px;
 
-  width: 230px;
-  height: 300px;
-
-  margin: 0 auto;
+  min-width: 312px;
+  min-height: 350px;
 
   figure {
     display: flex;
     justify-content: center;
     width: 100%;
-    border: 1px solid var(--grey7);
+    border: 2px solid var(--grey7);
     background-color: var(--grey7);
     
     :hover {
 
-      border: 1px solid var(--brand2);
+      border: 2px solid var(--brand2);
 
       img {
         transform: scale(1.1);
-        transition: 0.8s;
+        transition: 1s;
       }
     }
 
@@ -31,12 +29,13 @@ export const CardCar = styled.li`
       width: 90%;
       height: 100%;
       margin: 0 auto;
+      transition: 1s;
     }
   }
 
   h2 {
     font-weight: bold;
-    font-size: 13px;
+    font-size: 16px;
   }
 
   p {
@@ -48,7 +47,7 @@ export const CardCar = styled.li`
 
     padding: 1px 0;
 
-    font-size: 12px;
+    font-size: 14px;
     color: var(--grey2);
   }
 
@@ -59,8 +58,8 @@ export const CardCar = styled.li`
     gap: 7px;
 
     h2 {
-      width: 12px;
-      height: 12px;
+      width: 30px;
+      height: 30px;
       border-radius: 50%;
       text-align: center;
       background-color: var(--brand2);
@@ -85,16 +84,21 @@ export const CardCar = styled.li`
       gap: 10px;
 
       span {
+        display: flex;
         background-color: var(--grey7);
         border-radius: 3px;
         color: var(--brand2);
-        font-size: 13px;
-        padding: 7px;
+        font-size: 14px;
+        align-items: center;
+        justify-content: center;
+        width: 51px;
+        height: 32px;
       }
     }
     .value {
       font-size: 16px;
       font-weight: bold;
+      color: var(--grey1);
     }
   }
 `
