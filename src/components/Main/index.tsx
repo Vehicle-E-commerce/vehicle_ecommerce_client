@@ -1,6 +1,7 @@
-import AuctionCard from "../AuctionCard";
+import AuctionList from "../AuctionList";
 import Button from "../Button";
-import CardsCar from "../CardCar";
+import Carlist from "../CarList";
+import MotorBikelist from "../MotorBikeList";
 import { ArticleHome, MainHome } from "./styles";
 
 const Main: React.FC = () => {
@@ -13,30 +14,10 @@ const Main: React.FC = () => {
           <Button textColor= "var(--grey10)">Carros</Button>
           <Button textColor= "var(--grey10)">Motos</Button>
         </div>
-      </ArticleHome>
-      <ul className="auction">
-        <AuctionCard />
-        <AuctionCard />
-        <AuctionCard />
-        <AuctionCard />
-        <AuctionCard />
-      </ul>
-      <ul className="cars">
-        <CardsCar />
-        <CardsCar />
-        <CardsCar />
-        <CardsCar />
-        <CardsCar />
-        <CardsCar />
-      </ul>
-      <ul className=" motorBike">
-        <CardsCar />
-        <CardsCar />
-        <CardsCar />
-        <CardsCar />
-        <CardsCar />
-        <CardsCar />
-      </ul>
+      </ArticleHome> 
+      <AuctionList/>
+      <Carlist/>
+      <MotorBikelist/>
     </MainHome>
   );
 };

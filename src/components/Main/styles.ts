@@ -8,22 +8,21 @@ export const MainHome = styled.main`
   }
 
   ul::-webkit-scrollbar-track {
-    background: var(--whiteFixed);        /* color of the tracking area */
+    background: transparent;        /* color of the tracking area */
   }
 
   ul::-webkit-scrollbar-thumb {
-    background-color: var(--whiteFixed);    /* color of the scroll thumb */
+    background-color: transparent;    /* color of the scroll thumb */
     border-radius: 20px;       /* roundness of the scroll thumb */
   }
 
   ul {
     display: flex;
     flex-direction: row;
-    max-width: 100%;
-    overflow: auto;
-    padding-left: 20px;
+    gap: 2rem;
+    overflow-x: auto;
   }
-  .auction {
+  /* .auction {
     gap: 1.5rem;
   }
   .cars, .motorBike {
@@ -32,7 +31,7 @@ export const MainHome = styled.main`
   }
   .motorBike {
     margin-bottom: 10rem;
-  }
+  } */
 `;
 export const ArticleHome = styled.article`
   background-color: var(--brand2);
@@ -42,7 +41,7 @@ export const ArticleHome = styled.article`
   align-items: center;
   justify-content: center;
   height: 36rem;
-  margin-bottom: 10rem;
+  margin-bottom: 7rem;
   h1 {
     height: 119px;
     width: 748px;
