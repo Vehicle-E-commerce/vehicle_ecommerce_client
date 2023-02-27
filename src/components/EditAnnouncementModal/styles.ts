@@ -5,21 +5,22 @@ export const ContainerModalEdit = styled.div`
   position: fixed;
   display: flex;
   justify-content: center;
-
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   overflow-x: hidden;
 
   section {
-    @media (max-width: 770px){
-      margin: 90px 110px 0px 70px;
-      
+    width: 100%;
+    max-width: 520px;
+    min-width: 346px;
+    margin: 0 auto;
+    margin-top: 82px;
+    margin-bottom: 82px;
+
+    @media (max-width: 600px) {
+      margin: 100px 20px 0 20px;
     }
-    
-    width: 480px;
-    min-width: 280px;
-    margin: 82px;
 
     
     .base-modal {
@@ -95,7 +96,7 @@ export const ContainerModalEdit = styled.div`
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
-        width: 97%;
+        width: 100%;
         gap: 20px;
 
         label {
@@ -175,7 +176,7 @@ export const ContainerModalEdit = styled.div`
             display: flex;
             flex-direction: row;
             justify-content: space-between;
-            width: 103.5%;
+            width: 100%;
           }
         }
         .img-box {
@@ -191,8 +192,8 @@ export const ContainerModalEdit = styled.div`
           }
           button {
             background-color: var(--brand4);
-            width: 65%;
-            min-width: 290px;
+            width: 70%;
+            min-width: 314px;
             height: 38px;
             border: 1.5px solid var(--brand4);
             font-size: 14px;
