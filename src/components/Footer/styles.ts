@@ -1,12 +1,13 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  position: fixed;
+  
   bottom: 0;
   height: 140px;
-  width: 100vw;
+  width: 100%;
   color: var(--whiteFixed);
   display: flex;
+  flex-direction: column;
   justify-content: space-around;
   align-items: center;
   background: var(--grey0);
@@ -14,12 +15,27 @@ export const Container = styled.div`
   footer {
     width: 100vw;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     p {
       display: flex;
       align-items: center;
     }
+    div { 
+      margin: 0;
+    }
   }
+
+  @media only screen and (max-width: 560px) {
+  height: 310px;
+  footer {
+    align-items: center;
+    height: 90%;
+    flex-direction: column;
+
+    h1{margin: 0}
+  }
+
+}
 `
 
 export const Title = styled.h1`
@@ -44,7 +60,8 @@ export const Cont = styled.div`
   align-items: center;
   justify-content: center;
   margin-right: 2rem;
+  border-radius: 4px;
   > svg {
-    width: 0.7rem;
+    width: 0.5rem;
   }
 `

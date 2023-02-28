@@ -6,7 +6,6 @@ import { Cont, Container, Navegacao, Title, VerticalSwitchContainer} from "./sty
 import { ThemeContext } from "styled-components";
 import { ThemesContext } from "../../contexts/Themes";
 import { useMediaQuery } from 'react-responsive';
-import { IconBaseProps } from "react-icons";
 
 import MenuMobile from "../MenuMobile";
 import Button from "../Button";
