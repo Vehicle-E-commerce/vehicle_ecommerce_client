@@ -17,7 +17,6 @@ export const StyledInput = styled.input<Props>`
     border-radius: 4px;
 
     background-color: ${(props) => props.backColor || "transparent"};
-    color: ${props => props.textColor || `var(--grey7)`};
     
     font-size: 16px;
     font-weight: 400;
