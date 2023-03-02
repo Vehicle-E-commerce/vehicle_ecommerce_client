@@ -15,7 +15,7 @@ export const StyledButton = styled.button<Props>`
     border: ${(props)=> props.border || `solid var(--grey4, grey) var(--border-size, 1.5px)`};
 
     background-color: ${(props) => props.backColor || "transparent"};
-    color: ${props => props.theme.colors.text};
+    color: ${props => props.textColor};
     border-radius: 4px;
 
     font-size: 16px;
