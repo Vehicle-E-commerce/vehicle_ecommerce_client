@@ -11,7 +11,7 @@ interface Props {
   placeholder?: string;
   margin?: string;
   value?: string;
-  onCharge?: () => void;
+  onCharge?: React.ChangeEventHandler<HTMLInputElement> | undefined;
 }
 
 const Input: React.FC<Props> = ({
