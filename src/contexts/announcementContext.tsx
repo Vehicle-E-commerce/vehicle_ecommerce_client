@@ -103,11 +103,6 @@ export interface ICommentData {
   comment: string
 }
 
-export const AnnouncementContext = createContext<IAnnouncementContext>(
-  {} as IAnnouncementContext
-);
-
-
 export const AnnouncementContext = createContext<IAnnouncementContext>({} as IAnnouncementContext);
 
 function AnnouncementProvider({children}: IAnnouncementProviders) {
