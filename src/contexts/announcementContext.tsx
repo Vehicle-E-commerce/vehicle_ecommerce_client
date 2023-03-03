@@ -16,6 +16,10 @@ interface IAnnouncementContext {
   setMotorbikeList: React.Dispatch<React.SetStateAction<never[] >> 
   vehicleSpecific: null | IAnnouncement
   setVehicleSpecific: React.Dispatch<React.SetStateAction<null>>
+  imageToModal: string
+  setImageToModal: React.Dispatch<SetStateAction<string>>
+  imageModal: boolean
+  setImageModal: React.Dispatch<SetStateAction<boolean>>
 }
 interface IAnnouncement {
   id: string,
@@ -84,8 +88,16 @@ function AnnouncementProvider({children}: IAnnouncementProviders) {
   const [announcementList, setAnnouncementList] = useState([])
   const [carList, setCarList] = useState([])
   const [motorbikeList, setMotorbikeList] = useState([])
-
   const [vehicleSpecific, setVehicleSpecific] = useState(null)
+  const [imageToModal, setImageToModal] = useState('')
+  const [imageModal, setImageModal] = useState(false)
+
+  document.onkeydown = function(e) {
+    if(e.key === 'Escape') {
+      setImageModal(false)
+    }
+  }
+
 
   const announcementData = async ():Promise<void> => {
     await api.get("announcements/") 
@@ -113,6 +125,10 @@ function AnnouncementProvider({children}: IAnnouncementProviders) {
         motorbikeList,
         setVehicleSpecific,
         vehicleSpecific,
+        setImageToModal,
+        imageToModal,
+        setImageModal,
+        imageModal
       }
     }>
       {children}
