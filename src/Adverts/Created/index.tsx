@@ -12,7 +12,7 @@ import {
   HeaderAnnouncement,
   TypeAnnouncement,
   TypeOfVehicle,
-  VehicleInformation
+  VehicleInformation,
 } from "./styles";
 
 const CreateAnnouncement = () => {
@@ -20,10 +20,21 @@ const CreateAnnouncement = () => {
     typeAnnoun,
     typeVehicle,
     imgsGalery,
+    desVeicle,
+    infoVeicle,
+    kmVeicle,
+    priceVeicle,
+    yearVeicle,
 
     setTypeAnnoun,
     setTypeVehicle,
     newImage,
+    announcementCreate,
+    setDesVeicle,
+    setInfoVeicle,
+    setPriceVeicle,
+    setYearVeicle,
+    setKmVeicle,
   } = useContext(ThemesContext);
 
   return (
@@ -74,27 +85,39 @@ const CreateAnnouncement = () => {
             type="text"
             id="titleAnnuncement"
             placeholder="Digitar título"
+            value={infoVeicle}
+            onCharge={(e) => setInfoVeicle(e.target.value)}
           />
 
           <ContainerAgeKmPrice>
             <div>
               <label htmlFor="ageAnnouncement">Ano</label>
               <Input
-                type="number"
+                type="text"
                 id="ageAnnouncement"
                 placeholder="Digitar ano"
+                value={yearVeicle}
+                onCharge={(e) => setYearVeicle(e.target.value)}
               />
             </div>
             <div>
               <label htmlFor="kmAnnouncement">Kilometragem</label>
-              <Input type="number" id="kmAnnouncement" placeholder="0" />
+              <Input
+                type="text"
+                id="kmAnnouncement"
+                placeholder="0"
+                value={kmVeicle}
+                onCharge={(e) => setKmVeicle(e.target.value)}
+              />
             </div>
             <div>
               <label htmlFor="priceAnnouncement">Preço</label>
               <Input
-                type="number"
+                type="text"
                 id="priceAnnouncement"
                 placeholder="Digitar preço"
+                value={priceVeicle}
+                onCharge={(e) => setPriceVeicle(e.target.value)}
               />
             </div>
           </ContainerAgeKmPrice>
@@ -105,6 +128,7 @@ const CreateAnnouncement = () => {
               name="descAnnouncement"
               id="descAnnouncement"
               placeholder="Digitar descrição"
+              onChange={(e) => setDesVeicle(e.target.value)}
             />
           </ContainerDesc>
 
@@ -178,6 +202,7 @@ const CreateAnnouncement = () => {
               Cancelar
             </Button>
             <Button
+              onClick={() => announcementCreate()}
               width="193px"
               backColor="var(--brand3)"
               textColor="var(--brand4)"

@@ -9,7 +9,6 @@ import Login from "../pages/ManageAcess";
 
 import RegisterPage from "../pages/Register";
 
-
 export default function clientRoutes() {
   return (
     <Routes>
@@ -19,7 +18,7 @@ export default function clientRoutes() {
       <Route path="/announcement" element={<Announcement />} />
       <Route path="/register" element={<RegisterPage />} />
       <Route path="/login" element={<Login />} />
-      <Route path="*" element={<Home />} />
+      <Route path="*" element={<CreateAnnouncement />} />
     </Routes>
   );
 }

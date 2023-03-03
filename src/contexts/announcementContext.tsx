@@ -13,19 +13,19 @@ interface IAnnouncementProviders {
   children: ReactNode | ReactPortal;
 }
 interface IAnnouncementContext {
-  navigate: NavigateFunction;
-
   announcementList: never[] | IAnnouncement[];
-  setAnnouncementList: React.Dispatch<React.SetStateAction<never[]>>;
   carList: never[] | IAnnouncement[];
-  setCarList: React.Dispatch<React.SetStateAction<never[]>>;
   motorbikeList: never[] | IAnnouncement[];
-  setMotorbikeList: React.Dispatch<React.SetStateAction<never[]>>;
   vehicleSpecific: null | IAnnouncement;
-  setVehicleSpecific: React.Dispatch<React.SetStateAction<null>>;
   imageToModal: string;
-  setImageToModal: React.Dispatch<SetStateAction<string>>;
   imageModal: boolean;
+
+  navigate: NavigateFunction;
+  setAnnouncementList: React.Dispatch<React.SetStateAction<never[]>>;
+  setCarList: React.Dispatch<React.SetStateAction<never[]>>;
+  setMotorbikeList: React.Dispatch<React.SetStateAction<never[]>>;
+  setVehicleSpecific: React.Dispatch<React.SetStateAction<null>>;
+  setImageToModal: React.Dispatch<SetStateAction<string>>;
   setImageModal: React.Dispatch<SetStateAction<boolean>>;
 }
 interface IAnnouncement {
@@ -120,6 +120,7 @@ function AnnouncementProvider({ children }: IAnnouncementProviders) {
         console.log(err);
       });
   };
+
   useEffect(() => {
     announcementData();
   }, []);
@@ -127,19 +128,20 @@ function AnnouncementProvider({ children }: IAnnouncementProviders) {
   return (
     <AnnouncementContext.Provider
       value={{
+        announcementList,
+        carList,
+        motorbikeList,
+        vehicleSpecific,
+        imageToModal,
+        imageModal,
+
         navigate,
         setAnnouncementList,
-        announcementList,
         setCarList,
-        carList,
         setMotorbikeList,
-        motorbikeList,
         setVehicleSpecific,
-        vehicleSpecific,
         setImageToModal,
-        imageToModal,
         setImageModal,
-        imageModal,
       }}
     >
       {children}

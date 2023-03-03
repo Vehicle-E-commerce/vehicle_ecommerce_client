@@ -1,7 +1,6 @@
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-
 import Button from "../../components/Button";
 import Footer from "../../components/Footer";
 import Header from "../../components/Header";
@@ -9,7 +8,7 @@ import Input from "../../components/Input";
 import { ThemesContext } from "../../contexts/Themes";
 import { ContainerButtons, Container } from "./styles";
 const ModalLogin: React.FC = () => {
-  const {modal, setModal} = useContext(ThemesContext)
+  const { modal, setModal } = useContext(ThemesContext);
   const navigate = useNavigate();
 
   const {
@@ -38,13 +37,19 @@ const ModalLogin: React.FC = () => {
 
         <label htmlFor="password">Senha</label>
         <Input
+          value={passwordLogin}
           onCharge={(e) => setPasswordLogin(e.target.value)}
           id="password"
           width="100%"
           placeholder="Digitar senha"
         />
 
-        <button  onClick={()=>setModal("resetPassword")} className="recoverPassword">Esqueci minha senha</button>
+        <button
+          onClick={() => setModal("resetPassword")}
+          className="recoverPassword"
+        >
+          Esqueci minha senha
+        </button>
       </div>
       <ContainerButtons>
         <Button
@@ -55,10 +60,7 @@ const ModalLogin: React.FC = () => {
         >
           Entrar
         </Button>
-        <button
-          onClick={() => navigate("/homepage")}
-          className="createCont"
-        >
+        <button onClick={() => navigate("/homepage")} className="createCont">
           Ainda não possui conta?
         </button>
         <Button onClick={() => navigate("/homepage")} width="100%">
@@ -66,6 +68,6 @@ const ModalLogin: React.FC = () => {
         </Button>
       </ContainerButtons>
     </Container>
-  )
+  );
 };
 export default ModalLogin;
