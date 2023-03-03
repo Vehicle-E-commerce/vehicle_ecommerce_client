@@ -5,6 +5,9 @@ import Switch from "react-switch";
 import { useMediaQuery } from "react-responsive";
 import { ThemeContext } from "styled-components";
 import { ThemesContext } from "../../contexts/Themes";
+
+import { useMediaQuery } from 'react-responsive';
+
 import {
   Cont,
   Container,

@@ -1,6 +1,7 @@
 import React from "react";
 import { Cont, Container, Title } from "./styles";
 import { SiExpo } from "react-icons/si";
+import styled from "styled-components";
 
 
 const Footer: React.FC = () => {
@@ -12,12 +13,11 @@ const Footer: React.FC = () => {
                 <p className="word_shop">shop</p>
             </Title>
             <p>
-              &copy; {new Date().getFullYear()} - Todos os direitos reservados
+              &copy; {new Date().getFullYear()} - Todos os direitos reservados.
             </p>
 
-            <Cont onClick={() => {
-              window.scrollTo(0,0)
-            }}>
+            <Cont onClick={()=> window.scrollTo(0, 0)} >
+
                 <SiExpo/>
             </Cont>
         </footer>
