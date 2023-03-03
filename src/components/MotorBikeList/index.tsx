@@ -1,20 +1,32 @@
+import { useContext } from "react";
+import { AnnouncementContext } from "../../contexts/announcementContext";
 import CardsCar from "../CardCar"
 import { ContainerMotorBikeList } from "./styles"
 
 const MotorBikelist = () => {
 
-  const number = [0, 1, 2, 3, 4, 5, 6, 7]
+  const {motorbikeList} = useContext(AnnouncementContext);
 
   return (
-    <ContainerMotorBikeList>
+    <ContainerMotorBikeList id="motorbike-list">
       <label>Motos</label>
       <ul>
         {
-          number.length === 0 ?
+          motorbikeList.length === 0 ?
           <div>Sem motos amostra</div>
           :
-          number.map((el) => (
-            <CardsCar key={el}/>
+          motorbikeList.map((motorbike) => (
+            <CardsCar 
+              key={motorbike.id}
+              cover_image={motorbike.cover_image}
+              title={motorbike.title}
+              bio={motorbike.bio}
+              user_name={motorbike.user.name.split(" ")[0]}
+              mileage={motorbike.mileage}
+              year={motorbike.year}
+              price={motorbike.price}
+              data={motorbike}
+            />
           ))
         }
       </ul>

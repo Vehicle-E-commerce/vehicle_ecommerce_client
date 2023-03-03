@@ -1,12 +1,14 @@
+import { Toaster } from "react-hot-toast";
+import Providers from "./contexts";
 import Routes from "./routes";
 import GlobalStyle from "./styles/global";
-import Providers from "./contexts";
 
 const App = () => {
   return (
     <Providers>
       <GlobalStyle />
       <Routes />
+      <Toaster />
     </Providers>
   );
 };
