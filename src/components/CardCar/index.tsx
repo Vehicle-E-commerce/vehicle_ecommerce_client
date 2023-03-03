@@ -1,6 +1,10 @@
 import { useContext } from "react";
-import { AnnouncementContext, ICardData } from "../../contexts/announcementContext";
+import {
+  AnnouncementContext,
+  ICardData,
+} from "../../contexts/announcementContext";
 import { CardCar } from "./styles";
+
 
 const CardsCar = ({cover_image, title, year, mileage, price, bio, user_name, data}: ICardData) => {
 
@@ -13,6 +17,7 @@ const CardsCar = ({cover_image, title, year, mileage, price, bio, user_name, dat
       navigate("announcement/", {replace:true})
       window.scrollTo(0,0)
     }}>
+
       <figure>
         <img src={cover_image} alt={cover_image} />
       </figure>

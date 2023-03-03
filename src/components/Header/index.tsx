@@ -5,6 +5,7 @@ import Switch from "react-switch";
 import { useMediaQuery } from "react-responsive";
 import { ThemeContext } from "styled-components";
 import { ThemesContext } from "../../contexts/Themes";
+
 import {
   Cont,
   Container,
@@ -13,9 +14,9 @@ import {
   VerticalSwitchContainer,
 } from "./styled";
 
+import { AnnouncementContext } from "../../contexts/announcementContext";
 import Button from "../Button";
 import MenuMobile from "../MenuMobile";
-import { AnnouncementContext } from "../../contexts/announcementContext";
 
 const Header: React.FC = () => {
   const { toggleTheme } = useContext(ThemesContext);
@@ -23,7 +24,7 @@ const Header: React.FC = () => {
   const [menuMobVisible, setMenuMobVisible] = useState(false);
   const isMobile = useMediaQuery({ maxWidth: 767 });
 
-  const {navigate} = useContext(AnnouncementContext);
+  const { navigate } = useContext(AnnouncementContext);
 
   // const {user, auth} = useContext(AuthContext)
   // test de render
@@ -60,9 +61,11 @@ const Header: React.FC = () => {
             onColor="#fff"
           />
         </VerticalSwitchContainer>
-        <Title onClick={() => {
-          navigate("/homepage", {replace: true})
-        }}>
+        <Title
+          onClick={() => {
+            navigate("/homepage", { replace: true });
+          }}
+        >
           <p>Motors</p>
           <p className="word_shop">shop</p>
         </Title>

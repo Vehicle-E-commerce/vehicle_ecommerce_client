@@ -1,19 +1,18 @@
-import { ReactNode } from "react";
+import { Props } from "../interfaces";
 import AnnouncementProvider from "./announcementContext";
+import { RegisterProvider } from "./Register";
 import { ThemesProvider } from "./Themes";
 
-interface Props {
-    children: ReactNode
-}
- 
-const Providers: React.FC<Props> = ({ children }) => { 
-    return(
- 	    <ThemesProvider>
-            <AnnouncementProvider>
-                {children}
-            </AnnouncementProvider>
-        </ThemesProvider> 
-    )
-}; 
+const Providers: React.FC<Props> = ({ children }) => {
+  return (
+    <RegisterProvider>
+      <ThemesProvider>
+        <AnnouncementProvider>
+          <ThemesProvider>{children}</ThemesProvider>
+        </AnnouncementProvider>
+      </ThemesProvider>
+    </RegisterProvider>
+  );
+};
 
 export default Providers;

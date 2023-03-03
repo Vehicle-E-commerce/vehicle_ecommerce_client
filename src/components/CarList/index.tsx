@@ -1,23 +1,20 @@
-import { useContext } from "react"
-import { AnnouncementContext } from "../../contexts/announcementContext"
-import CardsCar from "../CardCar"
-import { ContainerCarList } from "./styles"
-
+import { useContext } from "react";
+import { AnnouncementContext } from "../../contexts/announcementContext";
+import CardsCar from "../CardCar";
+import { ContainerCarList } from "./styles";
 
 const Carlist = () => {
-
-  const {carList} = useContext(AnnouncementContext);
+  const { carList } = useContext(AnnouncementContext);
 
   return (
     <ContainerCarList id="car-list">
       <label>Carros</label>
       <ul>
-        {
-          carList.length === 0 ?
+        {carList.length === 0 ? (
           <div>Sem carros amostra</div>
-          :
+        ) : (
           carList.map((car) => (
-            <CardsCar 
+            <CardsCar
               key={car.id}
               cover_image={car.cover_image}
               title={car.title}
@@ -29,10 +26,10 @@ const Carlist = () => {
               data={car}
             />
           ))
-        }
+        )}
       </ul>
     </ContainerCarList>
-  )
-}
+  );
+};
 
 export default Carlist;
