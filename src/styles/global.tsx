@@ -5,7 +5,7 @@ export default createGlobalStyle`
   box-sizing: border-box;
 }
 #root {
-    height: 100%;
+    height: 100vh;
     width: 100%;
 }
 :root {

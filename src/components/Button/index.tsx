@@ -4,6 +4,7 @@ import { ReactNode } from "react";
 interface Props {
   height?: string;
   width?: string;
+  margin?: string;
   backColor?: string;
   border?: string;
   textColor?: string;
@@ -14,6 +15,7 @@ interface Props {
 const Button: React.FC<Props> = ({
   children,
   height,
+  margin,
   width,
   backColor,
   border,
@@ -25,6 +27,7 @@ const Button: React.FC<Props> = ({
     <StyledButton
       height={height}
       width={width}
+      margin={margin}
       backColor={backColor}
       border={border}
       textColor={textColor}

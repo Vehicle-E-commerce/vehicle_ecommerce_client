@@ -3,7 +3,8 @@ import DeleteAnnouncementModal from "../components/DeleteAnnouncementModal";
 import EditAnnouncementModal from "../components/EditAnnouncementModal";
 import Announcement from "../pages/Announcement";
 import Home from "../pages/Home";
-import Login from "../pages/Login";
+import Login from "../pages/ManageAcess";
+import Test from "../pages/Test";
 
 export default function clientRoutes() {
   return (

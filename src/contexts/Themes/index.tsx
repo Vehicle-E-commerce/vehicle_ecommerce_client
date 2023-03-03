@@ -18,25 +18,20 @@ interface ThemesContextType {
   loginUser: () => void;
   setEmailLogin: React.Dispatch<React.SetStateAction<string>>;
   setPasswordLogin: React.Dispatch<React.SetStateAction<string>>;
+  modal: string;
+  setModal: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export const ThemesContext = createContext<ThemesContextType>({
-  theme: light,
-  emailLogin: "",
-  passwordLogin: "",
-
-  toggleTheme: () => {},
-  loginUser: () => {},
-  setEmailLogin: () => {},
-  setPasswordLogin: () => {},
-});
+ 
+} as ThemesContextType);
 
 interface Props {
   children: ReactNode;
 }
 export const ThemesProvider: React.FC<Props> = ({ children }) => {
   const [theme, setTheme] = usePersistedState<DefaultTheme>("theme", light);
-
+  const [ modal, setModal ] = useState("login")
   const toggleTheme = () => {
     setTheme(theme.title == "light" ? dark : light);
   };
@@ -64,11 +59,13 @@ export const ThemesProvider: React.FC<Props> = ({ children }) => {
           theme,
           emailLogin,
           passwordLogin,
+          modal,
 
           toggleTheme,
           loginUser,
           setEmailLogin,
           setPasswordLogin,
+          setModal,
         }}
       >
         {children}

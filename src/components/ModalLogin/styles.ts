@@ -1,38 +1,17 @@
 import styled from "styled-components";
 
-export const ContainerLogin = styled.div`
-    background-color: var(--grey8);
-
-    width: 100vw;
-    height: 100vh;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    h1 {
-        font-size: 24px;
-        font-weight: 500;
-        line-height: 30px;
-        color: #000000;
-    }
-
-    .containerDataUser {
-        width: 100%;
-    }
-
-`
-
-export const MainLogin = styled.div`
+export const Container = styled.div`
     background-color: var(--grey10);
     
     width: 343px;
-    height: 542px;
+    height: 502px;
 
     border-radius: 4px;
 
     padding: 44px 28px;
+    margin: 20px 10px;
     gap: 32px;
+    
 
     display: flex;
     flex-direction: column;
