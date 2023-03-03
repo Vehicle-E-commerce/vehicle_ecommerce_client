@@ -15,7 +15,9 @@ const Footer: React.FC = () => {
               &copy; {new Date().getFullYear()} - Todos os direitos reservados
             </p>
 
-            <Cont>
+            <Cont onClick={() => {
+              window.scrollTo(0,0)
+            }}>
                 <SiExpo/>
             </Cont>
         </footer>

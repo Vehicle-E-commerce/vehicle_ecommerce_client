@@ -1,8 +1,11 @@
+import { useContext } from 'react'
 import carImg from '../../assets/IMG/carModel2.png'
+import { AnnouncementContext } from '../../contexts/announcementContext'
 import { ContainerSpecificAnnouncement } from './styles'
 
 const SpecificAnnouncement = () => {
-  const number = [1,2,3,4,5,6]
+
+  const {vehicleSpecific} = useContext(AnnouncementContext);
 
   return (
     <ContainerSpecificAnnouncement>
@@ -10,39 +13,53 @@ const SpecificAnnouncement = () => {
         <div className='main-aside'>
           <main>
             <figure>
-              <img src={carImg} alt="imagem do carro" />
+              <img src={vehicleSpecific?.cover_image} alt={vehicleSpecific?.cover_image} />
             </figure>
             <article className='data-car'>
-              <h2>Mercedes Benz A 200 CGI ADVANCE SEDAN Mercedes Benz A 200 </h2>
+              <h2>{vehicleSpecific?.title}</h2>
               <div className='date-km-value'>
                 <div className='date-km'>
-                  <span>2013</span>
-                  <span>0 KM</span>
+                  <span>{vehicleSpecific?.year}</span>
+                  <span>{vehicleSpecific?.mileage} KM</span>
                 </div>
-                <span className='value'>R$ 00.000,00</span>
+                <span className='value'>R$ {vehicleSpecific?.price},00</span>
               </div>
               <button>Comprar</button>
             </article>
             <article className='description-box'>
               <h2>Descrição</h2>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore, saepe repellendus. Natus alias a nostrum adipisci aut est. Repellendus dolore esse eveniet eos cupiditate tenetur quos ratione expedita quas incidunt?</p>
+              <p>{vehicleSpecific?.bio}</p>
             </article>
           </main>
           <aside>
             <div className='carImg-box'>
               <label>Fotos</label>
               <ul>
-                {number.map((el) => (
-                  <figure>
-                    <img src={carImg} />
+                {vehicleSpecific?.images.map((el) => (
+                  <figure key={el.id}>
+                    <img src={el.image} />
                   </figure>
                 ))}
               </ul>
             </div>
             <div className='adversiter-box'>
-              <h2>SL</h2>
-              <h3>Samuel Leão</h3>
-              <p>Lorem ipsum dolorores sim mistet aldo sir sit amet consectetur adipisicing elit. Esse, praesentiuma! Cumque dolorem.</p>
+              <h2>
+                {vehicleSpecific?.user.name.split(" ")[0].substring(0,1).toLocaleUpperCase()}
+                {vehicleSpecific?.user.name.split(" ")[1] && 
+                  (
+                    vehicleSpecific.user.name.split(" ")[1].length > 3 ?
+                    vehicleSpecific.user.name.split(" ")[1].substring(0,1).toLocaleUpperCase() :
+                    (vehicleSpecific.user.name.split(" ")[2] && 
+                      vehicleSpecific.user.name.split(" ")[2].substring(0,1).toLocaleUpperCase()
+                    )
+                  )
+                }
+              </h2>
+              <h3>
+                {vehicleSpecific?.user.name.split(" ")[0]}
+                {vehicleSpecific?.user.name.split(" ")[1]}
+              </h3>
+              <p>{vehicleSpecific?.user.bio}</p>
               <button>Ver todos anúncios</button>
             </div>
           </aside>
