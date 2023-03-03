@@ -17,4 +17,4 @@ export const ContainerAuctionList = styled.section`
     gap: 2rem;
     overflow-x: auto;
   }
-`
+`;

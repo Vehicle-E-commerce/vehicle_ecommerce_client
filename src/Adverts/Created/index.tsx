@@ -4,15 +4,15 @@ import Input from "../../components/Input";
 import { ThemesContext } from "../../contexts/Themes";
 
 import {
-  TypeAnnouncement,
-  ContainerCreatedAnnouncement,
-  HeaderAnnouncement,
-  VehicleInformation,
   ContainerAgeKmPrice,
-  ContainerDesc,
-  TypeOfVehicle,
-  ContainerImgs,
   ContainerBtnCreated,
+  ContainerCreatedAnnouncement,
+  ContainerDesc,
+  ContainerImgs,
+  HeaderAnnouncement,
+  TypeAnnouncement,
+  TypeOfVehicle,
+  VehicleInformation
 } from "./styles";
 
 const CreateAnnouncement = () => {

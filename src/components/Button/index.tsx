@@ -1,5 +1,5 @@
-import { StyledButton } from "./styles";
 import { ReactNode } from "react";
+import { StyledButton } from "./styles";
 
 interface Props {
   id?: string;

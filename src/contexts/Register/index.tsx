@@ -3,7 +3,7 @@ import { createContext, useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { IUserRegister, Props, RegisterContextType } from "../../interfaces";
-import { api } from "../../services/server";
+import api from "../../services/server";
 
 export const RegisterContext = createContext({} as RegisterContextType);
 

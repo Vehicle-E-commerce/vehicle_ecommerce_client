@@ -6,7 +6,6 @@ export const ContainerAuction = styled.li`
 
   display: flex;
   flex-direction: column;
-  
 
   section {
     width: 100%;
@@ -24,7 +23,7 @@ export const ContainerAuction = styled.li`
       background: linear-gradient(180deg, rgba(0, 0, 0, 0.71) 0%, #000000 100%);
       transition: 1s;
     }
-    
+
     figure {
       position: absolute;
       width: 100%;
@@ -45,7 +44,7 @@ export const ContainerAuction = styled.li`
       margin: 0 auto;
       gap: 20px;
 
-      color: #FDFDFD;
+      color: #fdfdfd;
 
       .box-hour {
         display: flex;
@@ -68,7 +67,6 @@ export const ContainerAuction = styled.li`
         p {
           color: var(--grey1);
           font-size: 12px;
-          
         }
       }
       h2 {
@@ -79,7 +77,7 @@ export const ContainerAuction = styled.li`
         font-size: 13px;
         text-overflow: ellipsis;
         white-space: nowrap;
-        overflow: hidden; 
+        overflow: hidden;
       }
 
       .box-user {
@@ -102,7 +100,7 @@ export const ContainerAuction = styled.li`
           font-size: 12px;
         }
       }
-      
+
       .box-data {
         display: flex;
         flex-direction: row;
@@ -114,7 +112,7 @@ export const ContainerAuction = styled.li`
           display: flex;
           flex-direction: row;
           gap: 10px;
-          
+
           span {
             background-color: var(--grey6);
             border-radius: 3px;
@@ -161,4 +159,4 @@ export const ContainerAuction = styled.li`
       transition: 1s;
     }
   }
-`
+`;
