@@ -18,15 +18,17 @@ interface ThemesContextType {
   modal: string;
   setModal: React.Dispatch<React.SetStateAction<string>>;
 }
-export const ThemesContext = createContext<ThemesContextType>(
-  {} as ThemesContextType
-);
+
+export const ThemesContext = createContext<ThemesContextType>({} as ThemesContextType);
+
 interface Props {
   children: ReactNode;
 }
 export const ThemesProvider: React.FC<Props> = ({ children }) => {
   const [theme, setTheme] = usePersistedState<DefaultTheme>("theme", light);
+
   const [modal, setModal] = useState("login");
+
   const toggleTheme = () => {
     setTheme(theme.title == "light" ? dark : light);
   };

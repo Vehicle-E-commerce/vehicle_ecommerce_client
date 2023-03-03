@@ -4,8 +4,11 @@ import DeleteAnnouncementModal from "../components/DeleteAnnouncementModal";
 import EditAnnouncementModal from "../components/EditAnnouncementModal";
 import Announcement from "../pages/Announcement";
 import Home from "../pages/Home";
+
+import Login from "../pages/ManageAcess";
+
 import RegisterPage from "../pages/Register";
-import Login from "../pages/Login";
+
 
 export default function clientRoutes() {
   return (

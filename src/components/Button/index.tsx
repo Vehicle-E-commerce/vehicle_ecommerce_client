@@ -5,6 +5,7 @@ interface Props {
   id?: string;
   height?: string;
   width?: string;
+  margin?: string;
   backColor?: string;
   border?: string;
   textColor?: string;
@@ -17,6 +18,7 @@ const Button: React.FC<Props> = ({
   id,
   children,
   height,
+  margin,
   width,
   backColor,
   border,
@@ -30,6 +32,7 @@ const Button: React.FC<Props> = ({
       id={id}
       height={height}
       width={width}
+      margin={margin}
       backColor={backColor}
       border={border}
       textColor={textColor}
