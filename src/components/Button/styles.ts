@@ -10,19 +10,6 @@ interface Props {
 }
 
 export const StyledButton = styled.button<Props>`
-    height: ${(props)=> props.height || "48px"};
-    width: ${(props)=> props.width || "146px"};
-    margin: ${(props)=> props.margin || ""};
-    
-    border: ${(props)=> props.border || `solid var(--grey4, grey) var(--border-size, 1.5px)`};
-  height?: string;
-  width?: string;
-  backColor?: string;
-  border?: string;
-  textColor?: string;
-}
-
-export const StyledButton = styled.button<Props>`
   height: ${(props) => props.height || "48px"};
   width: ${(props) => props.width || "146px"};
 
