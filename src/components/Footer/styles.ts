@@ -45,6 +45,7 @@ export const Cont = styled.div`
   align-items: center;
   justify-content: center;
   margin-right: 2rem;
+  cursor: pointer;
   > svg {
     width: 0.7rem;
   }

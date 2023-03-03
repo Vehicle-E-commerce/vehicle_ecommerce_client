@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import AnnouncementProvider from "./announcementContext";
 import { ThemesProvider } from "./Themes";
 
 interface Props {
@@ -8,7 +9,9 @@ interface Props {
 const Providers: React.FC<Props> = ({ children }) => { 
     return(
  	    <ThemesProvider>
-            {children}
+            <AnnouncementProvider>
+                {children}
+            </AnnouncementProvider>
         </ThemesProvider> 
     )
 }; 

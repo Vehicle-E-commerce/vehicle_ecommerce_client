@@ -28,6 +28,7 @@ export const Title = styled.h1`
   display: flex;
   font-size: 30px;
   font-weight: 600;
+  cursor: pointer;
   .word_shop{
     align-self: flex-end;
     font-size: 20px;

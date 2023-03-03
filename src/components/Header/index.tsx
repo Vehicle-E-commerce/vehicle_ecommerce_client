@@ -15,12 +15,15 @@ import {
 
 import Button from "../Button";
 import MenuMobile from "../MenuMobile";
+import { AnnouncementContext } from "../../contexts/announcementContext";
 
 const Header: React.FC = () => {
   const { toggleTheme } = useContext(ThemesContext);
   const { colors, title } = useContext(ThemeContext);
   const [menuMobVisible, setMenuMobVisible] = useState(false);
   const isMobile = useMediaQuery({ maxWidth: 767 });
+
+  const {navigate} = useContext(AnnouncementContext);
 
   // const {user, auth} = useContext(AuthContext)
   // test de render
@@ -57,7 +60,9 @@ const Header: React.FC = () => {
             onColor="#fff"
           />
         </VerticalSwitchContainer>
-        <Title>
+        <Title onClick={() => {
+          navigate("/homepage", {replace: true})
+        }}>
           <p>Motors</p>
           <p className="word_shop">shop</p>
         </Title>
@@ -73,13 +78,13 @@ const Header: React.FC = () => {
           <Navegacao>
             <ul>
               <li>
-                <a href="#">Carros</a>
+                <a href="#car-list">Carros</a>
               </li>
               <li>
-                <a href="#">Motos</a>
+                <a href="#motorbike-list">Motos</a>
               </li>
               <li>
-                <a href="#">leilão</a>
+                <a href="#auction-list">leilão</a>
               </li>
               <div className="vertical_line"></div>
 
