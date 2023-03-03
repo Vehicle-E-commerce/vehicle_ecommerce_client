@@ -1,9 +1,11 @@
 import { Route, Routes } from "react-router-dom";
+import CreateAnnouncement from "../Adverts/Created";
 import DeleteAnnouncementModal from "../components/DeleteAnnouncementModal";
 import EditAnnouncementModal from "../components/EditAnnouncementModal";
 import Announcement from "../pages/Announcement";
 import Home from "../pages/Home";
 import RegisterPage from "../pages/Register";
+import Login from "../pages/Login";
 
 export default function clientRoutes() {
   return (
@@ -13,6 +15,8 @@ export default function clientRoutes() {
       <Route path="/delete" element={<DeleteAnnouncementModal />} />
       <Route path="/announcement" element={<Announcement />} />
       <Route path="/register" element={<RegisterPage />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="*" element={<Home />} />
     </Routes>
   );
 }

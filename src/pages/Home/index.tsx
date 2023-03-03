@@ -5,6 +5,7 @@ import Main from "../../components/Main";
 import { Container } from "./styles";
 
 const Home: React.FC = () => {
+
   return (
     <Container>
       <Header />
@@ -12,6 +13,7 @@ const Home: React.FC = () => {
       <Footer />
     </Container>
   );
+
 };
 
 export default Home;

@@ -2,26 +2,43 @@ import { StyledButton } from "./styles";
 import { ReactNode } from "react";
 
 interface Props {
-    height?: string
-    width?: string
-    backColor?: string
-    border?: string
-    textColor?: string
-    children: ReactNode
-
+  id?: string;
+  height?: string;
+  width?: string;
+  backColor?: string;
+  border?: string;
+  textColor?: string;
+  children: ReactNode;
+  className?: string;
+  onClick?: () => void;
 }
 
-const Button: React.FC<Props> = ({children, height, width, backColor, border, textColor, ...rest  }) => {
-    return(
-        <StyledButton 
-            height={height}
-            width={width}
-            backColor={backColor}
-            border={border}
-            textColor={textColor} >
-                {children}
-        </StyledButton>
-    )
-}
+const Button: React.FC<Props> = ({
+  id,
+  children,
+  height,
+  width,
+  backColor,
+  border,
+  textColor,
+  className,
+  onClick,
+  ...rest
+}) => {
+  return (
+    <StyledButton
+      id={id}
+      height={height}
+      width={width}
+      backColor={backColor}
+      border={border}
+      textColor={textColor}
+      className={className}
+      onClick={onClick}
+    >
+      {children}
+    </StyledButton>
+  );
+};
 
-export default Button
+export default Button;

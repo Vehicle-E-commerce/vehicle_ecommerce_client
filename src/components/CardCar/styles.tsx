@@ -13,10 +13,14 @@ export const CardCar = styled.li`
   figure {
     display: flex;
     justify-content: center;
+    align-items: center;
     width: 100%;
+    height: 150px;
     border: 2px solid var(--grey7);
+    border-radius: 4px;
     background-color: var(--grey7);
-    
+    cursor: pointer;
+
     :hover {
 
       border: 2px solid var(--brand2);
@@ -29,7 +33,7 @@ export const CardCar = styled.li`
 
     img {
       width: 90%;
-      height: 100%;
+      height: 90%;
       margin: 0 auto;
       transition: 1s;
     }
@@ -93,8 +97,7 @@ export const CardCar = styled.li`
         font-size: 14px;
         align-items: center;
         justify-content: center;
-        width: 51px;
-        height: 32px;
+        padding: 10px;
       }
     }
     .value {

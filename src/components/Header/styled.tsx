@@ -7,6 +7,7 @@ interface Props {
 }
 
 export const Container = styled.div`
+
   top: 0;
   height: 80px;
   width: 100%;
@@ -28,6 +29,7 @@ export const Title = styled.h1`
   display: flex;
   font-size: 30px;
   font-weight: 600;
+  cursor: pointer;
   .word_shop{
     align-self: flex-end;
     font-size: 20px;
