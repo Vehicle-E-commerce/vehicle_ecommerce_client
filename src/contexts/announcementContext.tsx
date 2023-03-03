@@ -7,6 +7,8 @@ interface IAnnouncementProviders {
 }
 interface IAnnouncementContext {
   navigate: NavigateFunction
+  commentsByAnnouncement: (id_announcement: string) => Promise<void>
+  catchExample: (event: any) => void
 
   announcementList: never[] | IAnnouncement[]
   setAnnouncementList: React.Dispatch<React.SetStateAction<never[]>>
@@ -20,6 +22,10 @@ interface IAnnouncementContext {
   setImageToModal: React.Dispatch<SetStateAction<string>>
   imageModal: boolean
   setImageModal: React.Dispatch<SetStateAction<boolean>>
+  commentsAd: never[] | IComment[]
+  setCommentsAd: React.Dispatch<SetStateAction<never[]>>
+  exampleComment: string
+  setExampleComment: React.Dispatch<SetStateAction<string>>
 }
 interface IAnnouncement {
   id: string,
@@ -65,6 +71,14 @@ interface IAddress {
   created_at: Date,
   updated_at: Date
 }
+interface IComment {
+  id: string,
+  announcement: IAnnouncement
+  comment: string,
+  created_at: Date,
+  updated_at: Date
+  user: IUser
+}
 
 export interface ICardData {
   cover_image: string,
@@ -76,6 +90,11 @@ export interface ICardData {
   user_name: string
   data: SetStateAction<null>
 }
+export interface ICommentData {
+  userName: string,
+  date: Date,
+  comment: string
+}
 
 
 
@@ -83,21 +102,40 @@ export const AnnouncementContext = createContext<IAnnouncementContext>({} as IAn
 
 function AnnouncementProvider({children}: IAnnouncementProviders) {
   
+  
+  
   const navigate = useNavigate();
-
+  
   const [announcementList, setAnnouncementList] = useState([])
   const [carList, setCarList] = useState([])
   const [motorbikeList, setMotorbikeList] = useState([])
+  const [commentsAd, setCommentsAd] = useState([])
   const [vehicleSpecific, setVehicleSpecific] = useState(null)
   const [imageToModal, setImageToModal] = useState('')
   const [imageModal, setImageModal] = useState(false)
-
+  const [exampleComment, setExampleComment] = useState('');
+  
   document.onkeydown = function(e) {
     if(e.key === 'Escape') {
       setImageModal(false)
     }
   }
 
+  const catchExample = (event:any) => {
+    const example = event.target.getAttribute("data-valor");
+    if(example){
+      setExampleComment(example)
+    }
+  }
+  
+  const commentsByAnnouncement = async(id_announcement: string):Promise<void> => {
+
+    await api.get(`announcement/${id_announcement}/comments/`)
+      .then((res) => {
+        setCommentsAd(res.data)
+      })
+      .catch((err) => console.log(err))
+  }
 
   const announcementData = async ():Promise<void> => {
     await api.get("announcements/") 
@@ -108,6 +146,7 @@ function AnnouncementProvider({children}: IAnnouncementProviders) {
       })
       .catch((err) => {console.log(err)})
   }
+
   useEffect(() => {
     announcementData()
   }, [])
@@ -117,6 +156,8 @@ function AnnouncementProvider({children}: IAnnouncementProviders) {
     <AnnouncementContext.Provider value={
       {
         navigate,
+        commentsByAnnouncement,
+        catchExample,
         setAnnouncementList,
         announcementList,
         setCarList,
@@ -128,7 +169,11 @@ function AnnouncementProvider({children}: IAnnouncementProviders) {
         setImageToModal,
         imageToModal,
         setImageModal,
-        imageModal
+        imageModal,
+        setCommentsAd,
+        commentsAd,
+        setExampleComment,
+        exampleComment
       }
     }>
       {children}

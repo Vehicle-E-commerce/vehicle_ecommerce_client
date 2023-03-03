@@ -77,13 +77,13 @@ const Header: React.FC = () => {
         <Cont width={"40rem"}>
           <Navegacao>
             <ul>
-              <li>
+              <li onClick={() => navigate("homepage")}>
                 <a href="#car-list">Carros</a>
               </li>
-              <li>
+              <li onClick={() => navigate("homepage")}>
                 <a href="#motorbike-list">Motos</a>
               </li>
-              <li>
+              <li onClick={() => navigate("homepage")}>
                 <a href="#auction-list">leilão</a>
               </li>
               <div className="vertical_line"></div>
