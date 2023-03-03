@@ -4,6 +4,7 @@ import DeleteAnnouncementModal from "../components/DeleteAnnouncementModal";
 import EditAnnouncementModal from "../components/EditAnnouncementModal";
 import Announcement from "../pages/Announcement";
 import Home from "../pages/Home";
+import RegisterPage from "../pages/Register";
 import Login from "../pages/Login";
 
 export default function clientRoutes() {
@@ -13,6 +14,7 @@ export default function clientRoutes() {
       <Route path="/edit" element={<EditAnnouncementModal />} />
       <Route path="/delete" element={<DeleteAnnouncementModal />} />
       <Route path="/announcement" element={<Announcement />} />
+      <Route path="/register" element={<RegisterPage />} />
       <Route path="/login" element={<Login />} />
       <Route path="*" element={<Home />} />
     </Routes>
