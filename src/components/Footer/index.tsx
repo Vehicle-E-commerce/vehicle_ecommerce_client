@@ -17,6 +17,7 @@ const Footer: React.FC = () => {
             </p>
 
             <Cont onClick={()=> window.scrollTo(0, 0)} >
+
                 <SiExpo/>
             </Cont>
         </footer>

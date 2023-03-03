@@ -10,7 +10,7 @@ export const Container = styled.div`
 
   top: 0;
   height: 80px;
-  width: 100vw;
+  width: 100%;
   background: ${props => props.theme.colors.background};
   color: ${props => props.theme.colors.text};
   display: flex;
@@ -27,6 +27,9 @@ export const Title = styled.h1`
   background-clip: text;
   -webkit-text-fill-color: transparent;
   display: flex;
+  font-size: 30px;
+  font-weight: 600;
+  cursor: pointer;
   .word_shop{
     align-self: flex-end;
     font-size: 20px;
@@ -80,7 +83,7 @@ export const Cont = styled.div<Props>`
       width: 200px;
       height: 202px;
       right: 3rem;
-      top: 5rem;
+      top: 4.5rem;
       background: ${(props) => props.theme.colors.background};;
       box-shadow: 0px 0px 26px -10px ${(props) => rgba(props.theme.colors.text, 0.5)};
       border-radius: 4px;

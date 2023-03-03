@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
+
     min-height: 100%;
     width: 100%;
     display: flex;
@@ -14,4 +15,4 @@ export const Container = styled.div`
         height: 3000px;
         width: 50px;
     }
-`
+`;

@@ -1,16 +1,14 @@
-import React from "react";
-import GlobalStyle from './styles/global';
-import Home from "./pages/Home";
-
+import Routes from "./routes";
+import GlobalStyle from "./styles/global";
+import Providers from "./contexts";
 
 const App = () => {
-
   return (
-    <>
+    <Providers>
       <GlobalStyle />
-      <Home  />
-    </>
-  )
-}
+      <Routes />
+    </Providers>
+  );
+};
 
 export default App;

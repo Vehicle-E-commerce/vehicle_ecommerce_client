@@ -1,3 +1,8 @@
-import React from "react";
+import axios from "axios";
 
-const Repo = ""
+const api = axios.create({
+  baseURL: "http://localhost:3000/",
+  timeout: 8000
+});
+
+export default api;
