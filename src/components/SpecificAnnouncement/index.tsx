@@ -5,7 +5,7 @@ import { ContainerSpecificAnnouncement } from './styles'
 
 const SpecificAnnouncement = () => {
 
-  const {vehicleSpecific} = useContext(AnnouncementContext);
+  const {vehicleSpecific, setImageToModal, imageModal, setImageModal} = useContext(AnnouncementContext);
 
   return (
     <ContainerSpecificAnnouncement>
@@ -36,7 +36,10 @@ const SpecificAnnouncement = () => {
               <label>Fotos</label>
               <ul>
                 {vehicleSpecific?.images.map((el) => (
-                  <figure key={el.id}>
+                  <figure key={el.id} onClick={()=> {
+                    setImageToModal(el.image)
+                    setImageModal(!imageModal)
+                  }}>
                     <img src={el.image} />
                   </figure>
                 ))}
