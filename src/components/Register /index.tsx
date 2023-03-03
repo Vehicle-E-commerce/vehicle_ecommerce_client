@@ -2,6 +2,8 @@ import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { RegisterContext } from "../../contexts/Register";
 import { IUserRegister } from "../../interfaces";
+import Button from "../Button";
+import Input from "../Input";
 import { DivInp, FormRegister, H1, Label, MainRegister } from "./styles";
 
 export const UserRegister = () => {
@@ -28,7 +30,7 @@ export const UserRegister = () => {
         <Label>Informações pessoais</Label>
         <DivInp>
           <Label htmlFor="name">Nome</Label>
-          <input
+          <Input
             id="name"
             placeholder="Ex: Samuel Leão"
             required
@@ -37,7 +39,7 @@ export const UserRegister = () => {
         </DivInp>
         <DivInp>
           <Label htmlFor="email">Email</Label>
-          <input
+          <Input
             id="email"
             type="email"
             required
@@ -47,7 +49,7 @@ export const UserRegister = () => {
         </DivInp>
         <DivInp>
           <Label htmlFor="cpf">CPF</Label>
-          <input
+          <Input
             id="cpf"
             type="number"
             required
@@ -57,7 +59,7 @@ export const UserRegister = () => {
         </DivInp>
         <DivInp>
           <Label htmlFor="telephone">Celular</Label>
-          <input
+          <Input
             id="telephone"
             required
             type="number"
@@ -67,7 +69,7 @@ export const UserRegister = () => {
         </DivInp>
         <DivInp>
           <Label htmlFor="date_of_birth">Data de nascimento</Label>
-          <input
+          <Input
             id="date_of_birth"
             required
             type="date"
@@ -77,7 +79,7 @@ export const UserRegister = () => {
         </DivInp>
         <DivInp>
           <Label htmlFor="bio">Descrição</Label>
-          <input
+          <Input
             id="bio"
             type="text"
             placeholder="Digitar descrição"
@@ -87,7 +89,7 @@ export const UserRegister = () => {
         <h3>Informações de endereço</h3>
         <DivInp>
           <Label htmlFor="cep">CEP</Label>
-          <input
+          <Input
             id="cep"
             type="number"
             placeholder="00000.000"
@@ -97,15 +99,15 @@ export const UserRegister = () => {
         </DivInp>
         <DivInp>
           <Label htmlFor="city">Cidade</Label>
-          <input id="city" type="text" value={city} {...register("city")} />
+          <Input id="city" type="text" value={city} {...register("city")} />
         </DivInp>
         <DivInp>
           <Label htmlFor="state">Estado</Label>
-          <input id="state" type="text" value={state} {...register("state")} />
+          <Input id="state" type="text" value={state} {...register("state")} />
         </DivInp>
         <DivInp>
           <Label htmlFor="road">Rua</Label>
-          <input
+          <Input
             id="road"
             type="text"
             placeholder="Digitar Rua"
@@ -114,7 +116,7 @@ export const UserRegister = () => {
         </DivInp>
         <DivInp>
           <Label htmlFor="number">Número</Label>
-          <input
+          <Input
             id="number"
             type="number"
             placeholder="Digitar número"
@@ -122,8 +124,8 @@ export const UserRegister = () => {
           />
         </DivInp>
         <DivInp>
-          <Label htmlFor="complement">Número</Label>
-          <input
+          <Label htmlFor="complement">Complemento</Label>
+          <Input
             id="complement"
             type="text"
             placeholder="Ex: apart 307"
@@ -155,7 +157,7 @@ export const UserRegister = () => {
         </div>
         <DivInp>
           <Label htmlFor="password">Senha</Label>
-          <input
+          <Input
             id="password"
             required
             type="password"
@@ -165,7 +167,7 @@ export const UserRegister = () => {
         </DivInp>
         <DivInp>
           <Label htmlFor="confirm_password">Confirmar Senha</Label>
-          <input
+          <Input
             id="confirm_password"
             required
             type="password"
@@ -174,7 +176,14 @@ export const UserRegister = () => {
           />
         </DivInp>
 
-        <button type="submit">Finalizar cadastro</button>
+        <Button
+          type="submit"
+          backColor="var(--brand1)"
+          textColor="var(--whiteFixed)"
+          width="100%"
+        >
+          Finalizar cadastro
+        </Button>
       </FormRegister>
     </MainRegister>
   );

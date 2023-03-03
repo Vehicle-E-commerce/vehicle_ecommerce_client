@@ -6,16 +6,15 @@ export const MainRegister = styled.main`
   justify-content: space-between;
   margin-top: 2.875rem;
   margin-bottom: 6.0625rem;
-  border: 1px solid black;
   padding: 46px;
+  background-color: var(--whiteFixed);
 `;
 
 export const FormRegister = styled.form`
-  border: 1px solid red;
   display: flex;
   flex-direction: column;
   width: 25.6875rem;
-  height: 101.875rem;
+  min-height: 101.875rem;
   gap: 24px;
 `;
 
@@ -42,7 +41,6 @@ export const DivInp = styled.div`
   flex-direction: column;
 `;
 
-export const InpType1 = styled.input`
-`
+export const InpType1 = styled.input``;
 
 export const InpType2 = styled.input``;

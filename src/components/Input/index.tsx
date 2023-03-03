@@ -12,6 +12,9 @@ interface Props {
   margin?: string;
   value?: string;
   onCharge?: React.ChangeEventHandler<HTMLInputElement> | undefined;
+  checked?: boolean;
+  onChange?: (event: { target: { value: string } }) => void;
+  onBlur?: (event: { target: { value: string } }) => void;
 }
 
 const Input: React.FC<Props> = ({
