@@ -5,26 +5,19 @@ import {
 } from "../../contexts/announcementContext";
 import { CardCar } from "./styles";
 
-const CardsCar = ({
-  cover_image,
-  title,
-  year,
-  mileage,
-  price,
-  bio,
-  user_name,
-  data,
-}: ICardData) => {
-  const { setVehicleSpecific, navigate } = useContext(AnnouncementContext);
+
+const CardsCar = ({cover_image, title, year, mileage, price, bio, user_name, data}: ICardData) => {
+
+  const {setVehicleSpecific, vehicleSpecific, navigate, commentsByAnnouncement} = useContext(AnnouncementContext);
 
   return (
-    <CardCar
-      onClick={() => {
-        setVehicleSpecific(data);
-        navigate("announcement/", { replace: true });
-        window.scrollTo(0, 0);
-      }}
-    >
+    <CardCar onClick={() => {
+      setVehicleSpecific(data)
+      commentsByAnnouncement(data?.id)
+      navigate("announcement/", {replace:true})
+      window.scrollTo(0,0)
+    }}>
+
       <figure>
         <img src={cover_image} alt={cover_image} />
       </figure>

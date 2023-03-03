@@ -10,7 +10,7 @@ export const ContainerSpecificAnnouncement = styled.div`
   background-image: linear-gradient( to bottom, var(--brand1) 0, var(--brand1) 580px, var(--grey7) 580px, var(--grey7));
 
   .data-page {
-    width: 90%;
+    width: 80%;
     display: flex;
     flex-direction: column;
     margin: 50px;
@@ -21,8 +21,17 @@ export const ContainerSpecificAnnouncement = styled.div`
 
       .main-aside {
         align-items: center;
+        justify-content: center;
         flex-direction: column;
       }
+    }
+
+    .container-main {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      width: 100%;
+      min-width: 375px;
     }
 
     .main-aside {
@@ -30,6 +39,11 @@ export const ContainerSpecificAnnouncement = styled.div`
       display: flex;
       justify-content: center;
       gap: 50px;
+
+      @media (min-width: 1500px) {
+        display: flex;
+        justify-content: space-between;
+      }
 
       main {
         display: flex;
@@ -40,6 +54,10 @@ export const ContainerSpecificAnnouncement = styled.div`
         @media (max-width: 800px) {
           width: 90%;
           min-width: 350px;
+        }
+
+        @media (min-width: 1500px) {
+          max-width: 60%;
         }
 
         figure {
@@ -147,6 +165,10 @@ export const ContainerSpecificAnnouncement = styled.div`
         @media (max-width: 800px) {
           min-width: 350px;
         }
+        @media (min-width: 1500px) {
+          max-width: 40%;
+          width: 40%;
+        }
 
         .carImg-box {
           display: flex;
@@ -237,30 +259,79 @@ export const ContainerSpecificAnnouncement = styled.div`
 
       }
     }
-    .comments-list {
-      width: 65%;
-      max-width: 700px;
-      min-width: 350px;
-      height: 700px;
-      background-color: var(--whiteFixed);
-      margin-top: 20px;
+  }
+`
+export const ContainerComment = styled.article`
+  min-width: 330px;
+  max-width: 700px;
+  min-height: 800px;
+  margin-top: 20px;
+  border-radius: 4px;
+  margin-right: 10px;
 
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+
+  @media (min-width: 1500px) {
+    max-width: 60%;
+  }
+  @media (max-width: 400px) {
+    max-width: 100%;
+    margin: 10px 10px 0px 10px;
+  }
+  
+  .comment-list {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background-color: var(--grey10);
+    border-radius: 4px;
+    padding: 50px;
+    height: 600px;
+    gap: 24px;
+
+    label {
+      font-size: 20px;
+      font-weight: 600;
+    }
+    ul {
       display: flex;
-      align-items: center;
-      justify-content: center;
+      flex-direction: column;
+      gap: 44px;
+      width: 100%;
+      overflow-x: hidden;
 
-      @media (min-width: 1300px) {
-        margin-left: 5%;
+      ::-webkit-scrollbar {
+        width: 12px;               /* width of the entire scrollbar */
       }
-      @media (min-width: 1500px) {
-        margin-left: 10%;
+      ::-webkit-scrollbar-track {
+        background: transparent;        /* color of the tracking area */
       }
-
-      h1 {
-        font-weight: bold;
-        transform: rotate(270deg);
-        font-size: 50px;
+      ::-webkit-scrollbar-thumb {
+        background-color: blue;    /* color of the scroll thumb */
+        border-radius: 20px;       /* roundness of the scroll thumb */
+        border: 3px solid var(--whiteFixed);  /* creates padding around scroll thumb */
       }
     }
+    .no-comments {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height:500px;
+      width: 100%;
+
+      h1 {
+        font-weight: 600;
+      }
+    }
+  }
+  .create-comment {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background-color: var(--grey10);
+    padding: 50px;
+    border-radius: 4px;
   }
 `

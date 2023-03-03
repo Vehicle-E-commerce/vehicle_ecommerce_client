@@ -13,20 +13,26 @@ interface IAnnouncementProviders {
   children: ReactNode | ReactPortal;
 }
 interface IAnnouncementContext {
-  navigate: NavigateFunction;
+  navigate: NavigateFunction
+  commentsByAnnouncement: (id_announcement: string) => Promise<void>
+  catchExample: (event: any) => void
 
-  announcementList: never[] | IAnnouncement[];
-  setAnnouncementList: React.Dispatch<React.SetStateAction<never[]>>;
-  carList: never[] | IAnnouncement[];
-  setCarList: React.Dispatch<React.SetStateAction<never[]>>;
-  motorbikeList: never[] | IAnnouncement[];
-  setMotorbikeList: React.Dispatch<React.SetStateAction<never[]>>;
-  vehicleSpecific: null | IAnnouncement;
-  setVehicleSpecific: React.Dispatch<React.SetStateAction<null>>;
-  imageToModal: string;
-  setImageToModal: React.Dispatch<SetStateAction<string>>;
-  imageModal: boolean;
-  setImageModal: React.Dispatch<SetStateAction<boolean>>;
+  announcementList: never[] | IAnnouncement[]
+  setAnnouncementList: React.Dispatch<React.SetStateAction<never[]>>
+  carList: never[] | IAnnouncement[]
+  setCarList: React.Dispatch<React.SetStateAction<never[]>>
+  motorbikeList: never[] | IAnnouncement[]
+  setMotorbikeList: React.Dispatch<React.SetStateAction<never[] >> 
+  vehicleSpecific: null | IAnnouncement
+  setVehicleSpecific: React.Dispatch<React.SetStateAction<null>>
+  imageToModal: string
+  setImageToModal: React.Dispatch<SetStateAction<string>>
+  imageModal: boolean
+  setImageModal: React.Dispatch<SetStateAction<boolean>>
+  commentsAd: never[] | IComment[]
+  setCommentsAd: React.Dispatch<SetStateAction<never[]>>
+  exampleComment: string
+  setExampleComment: React.Dispatch<SetStateAction<string>>
 }
 interface IAnnouncement {
   id: string;
@@ -72,6 +78,14 @@ interface IAddress {
   created_at: Date;
   updated_at: Date;
 }
+interface IComment {
+  id: string,
+  announcement: IAnnouncement
+  comment: string,
+  created_at: Date,
+  updated_at: Date
+  user: IUser
+}
 
 export interface ICardData {
   cover_image: string;
@@ -83,30 +97,58 @@ export interface ICardData {
   user_name: string;
   data: SetStateAction<null>;
 }
+export interface ICommentData {
+  userName: string,
+  date: Date,
+  comment: string
+}
 
 export const AnnouncementContext = createContext<IAnnouncementContext>(
   {} as IAnnouncementContext
 );
 
-function AnnouncementProvider({ children }: IAnnouncementProviders) {
+
+export const AnnouncementContext = createContext<IAnnouncementContext>({} as IAnnouncementContext);
+
+function AnnouncementProvider({children}: IAnnouncementProviders) {
+  
+  
+  
   const navigate = useNavigate();
-
-  const [announcementList, setAnnouncementList] = useState([]);
-  const [carList, setCarList] = useState([]);
-  const [motorbikeList, setMotorbikeList] = useState([]);
-  const [vehicleSpecific, setVehicleSpecific] = useState(null);
-  const [imageToModal, setImageToModal] = useState("");
-  const [imageModal, setImageModal] = useState(false);
-
-  document.onkeydown = function (e) {
-    if (e.key === "Escape") {
-      setImageModal(false);
+  
+  const [announcementList, setAnnouncementList] = useState([])
+  const [carList, setCarList] = useState([])
+  const [motorbikeList, setMotorbikeList] = useState([])
+  const [commentsAd, setCommentsAd] = useState([])
+  const [vehicleSpecific, setVehicleSpecific] = useState(null)
+  const [imageToModal, setImageToModal] = useState('')
+  const [imageModal, setImageModal] = useState(false)
+  const [exampleComment, setExampleComment] = useState('');
+  
+  document.onkeydown = function(e) {
+    if(e.key === 'Escape') {
+      setImageModal(false)
     }
   };
+  
+  const catchExample = (event:any) => {
+    const example = event.target.getAttribute("data-valor");
+    if(example){
+      setExampleComment(example)
+    }
+  }
+  
+  const commentsByAnnouncement = async(id_announcement: string):Promise<void> => {
 
-  const announcementData = async (): Promise<void> => {
-    await api
-      .get("announcements/")
+    await api.get(`announcement/${id_announcement}/comments/`)
+      .then((res) => {
+        setCommentsAd(res.data)
+      })
+      .catch((err) => console.log(err))
+  }
+
+  const announcementData = async ():Promise<void> => {
+    await api.get("announcements/") 
       .then((res) => {
         setAnnouncementList(res.data);
         setCarList(
@@ -116,10 +158,9 @@ function AnnouncementProvider({ children }: IAnnouncementProviders) {
           res.data.filter((data: IAnnouncement) => data.is_motorbike)
         );
       })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+      .catch((err) => {console.log(err)})
+  }
+
   useEffect(() => {
     announcementData();
   }, []);
@@ -128,6 +169,8 @@ function AnnouncementProvider({ children }: IAnnouncementProviders) {
     <AnnouncementContext.Provider
       value={{
         navigate,
+        commentsByAnnouncement,
+        catchExample,
         setAnnouncementList,
         announcementList,
         setCarList,
@@ -140,8 +183,12 @@ function AnnouncementProvider({ children }: IAnnouncementProviders) {
         imageToModal,
         setImageModal,
         imageModal,
-      }}
-    >
+        setCommentsAd,
+        commentsAd,
+        setExampleComment,
+        exampleComment
+      }
+    }>
       {children}
     </AnnouncementContext.Provider>
   );
