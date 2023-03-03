@@ -12,6 +12,7 @@ interface Props {
   children: ReactNode;
   className?: string;
   onClick?: () => void;
+  type?: string;
 }
 
 const Button: React.FC<Props> = ({
