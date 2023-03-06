@@ -160,7 +160,7 @@ export const ContainerModalEdit = styled.div`
           gap: 8px;
 
           textarea {
-            width: 99%;
+            width: 100%;
             height: 80px;
             line-height: 32px;
             padding: 10px 10px 0px 10px;
