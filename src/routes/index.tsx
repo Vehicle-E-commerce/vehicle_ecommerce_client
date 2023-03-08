@@ -18,7 +18,7 @@ export default function clientRoutes() {
       <Route path="/register" element={<RegisterPage />} />
       <Route path="/login" element={<Login />} />
       <Route path="/recoveryPassword" element={<ResetPassword />} />
-      <Route path="/recoveryPassword/:token" element={<ChangePassword />} />
+      <Route path="/reset-password/:token" element={<ChangePassword />} />
 
       <Route path="*" element={<Home />} />
     </Routes>

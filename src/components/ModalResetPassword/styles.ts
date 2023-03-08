@@ -7,7 +7,7 @@ export const Container = styled.div`
 
     width: 343px;
     height: 500px;
-    margin: 7%;
+    margin: 4%;
 
     border-radius: 10px;
 
@@ -16,6 +16,37 @@ export const Container = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    align-items: center;
+    .success{
+        color: var(--sucess1);
+        background: var(--sucess3);
+        border: 0;
+        border-radius: 3px;
+        padding: 1rem;
+        width: fit-content;
+
+    }
+    .fail{
+        width: fit-content;
+        color: var(--alert1);
+        background: var(--alert3);
+        border: 0;
+        border-radius: 3px;
+        padding: 1rem; 
+    }
+    .success, .fail{
+        opacity: 0;
+        animation: fade-in 1s forwards;
+        @keyframes fade-in {
+        from {
+            display: none;
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+        }
+    }
     h1{
         font-family: Lexend;
         font-size: 25px;
