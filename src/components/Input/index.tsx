@@ -1,50 +1,36 @@
+import {
+  forwardRef,
+  ForwardRefRenderFunction,
+  InputHTMLAttributes,
+} from "react";
 import { StyledInput } from "./styles";
 
-interface Props {
-  id?: string;
-  type?: string;
+interface Props extends InputHTMLAttributes<HTMLInputElement> {
   height?: string;
   width?: string;
   backColor?: string;
   border?: string;
   textColor?: string;
-  placeholder?: string;
   margin?: string;
-  value?: string;
   onCharge?: React.ChangeEventHandler<HTMLInputElement> | undefined;
-  checked?: boolean;
-  onChange?: (event: { target: { value: string } }) => void;
-  onBlur?: (event: { target: { value: string } }) => void;
 }
 
-const Input: React.FC<Props> = ({
-  id,
-  type,
-  height,
-  width,
-  backColor,
-  border,
-  textColor,
-  placeholder,
-  margin,
-  value,
-  onCharge,
-  ...rest
-}) => {
+const InputBase: ForwardRefRenderFunction<HTMLInputElement, Props> = (
+  { height, width, backColor, border, textColor, margin, onCharge, ...rest },
+  ref
+) => {
   return (
     <StyledInput
-      id={id}
       height={height}
       width={width}
       backColor={backColor}
       border={border}
       textColor={textColor}
-      type={type}
-      placeholder={placeholder}
-      value={value}
       onChange={onCharge}
+      ref={ref}
+      {...rest}
     />
   );
 };
 
-export default Input;
+export const Input = forwardRef(InputBase);

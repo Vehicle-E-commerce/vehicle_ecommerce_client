@@ -1,71 +1,64 @@
 import { useContext, useState } from "react";
+import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-
-
 import Button from "../../components/Button";
-import Footer from "../../components/Footer";
-import Header from "../../components/Header";
-import Input from "../../components/Input";
-import { ThemesContext } from "../../contexts/Themes";
-import { ContainerButtons, Container } from "./styles";
+import { LoginContext } from "../../contexts/Login";
+import { IUserLogin } from "../../interfaces";
+import { Container, ContainerButtons, StyledInputLogin, TagP } from "./styles";
 const ModalLogin: React.FC = () => {
-  const {modal, setModal} = useContext(ThemesContext)
+  const { signIn } = useContext(LoginContext);
   const navigate = useNavigate();
+  const [teste, setTeste] = useState();
 
   const {
-    emailLogin,
-    passwordLogin,
-
-    loginUser,
-    setEmailLogin,
-    setPasswordLogin,
-  } = useContext(ThemesContext);
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<IUserLogin>();
 
   return (
-    <Container>
+    <Container onSubmit={handleSubmit(signIn)}>
       <h1>Login</h1>
 
-      <div className="containerDataUser">
-        <label htmlFor="user">Usuário</label>
-        <Input
-          id="user"
-          margin="8px 0px 24px 0px"
-          width="100%"
-          placeholder="Digitar usuário"
-          onCharge={(e) => setEmailLogin(e.target.value)}
-          value={emailLogin}
+      <div className="containerDataEmail">
+        <label htmlFor="email">Email</label>
+        <StyledInputLogin
+          id="email"
+          placeholder="Digitar email"
+          {...register("email")}
         />
 
         <label htmlFor="password">Senha</label>
-        <Input
-          onCharge={(e) => setPasswordLogin(e.target.value)}
+        <StyledInputLogin
           id="password"
-          width="100%"
+          // width="100%"
           placeholder="Digitar senha"
+          type="password"
+          {...register("password")}
         />
 
-        <button  onClick={()=>setModal("resetPassword")} className="recoverPassword">Esqueci minha senha</button>
+        <button
+          onClick={() => navigate("/recoveryPassword")}
+          className="recoverPassword"
+        >
+          Esqueci minha senha
+        </button>
       </div>
       <ContainerButtons>
         <Button
-          onClick={() => loginUser()}
           width="100%"
           backColor="var(--brand1)"
           textColor="var(--whiteFixed)"
+          type="submit"
         >
           Entrar
         </Button>
-        <button
-          onClick={() => navigate("/homepage")}
-          className="createCont"
-        >
-          Ainda não possui conta?
-        </button>
-        <Button onClick={() => navigate("/homepage")} width="100%">
+        <TagP>Ainda não possui conta?</TagP>
+        <Button onClick={() => navigate("/register")} width="100%">
           Cadastrar
         </Button>
       </ContainerButtons>
     </Container>
-  )
+  );
 };
 export default ModalLogin;

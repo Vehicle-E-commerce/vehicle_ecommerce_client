@@ -5,6 +5,17 @@ export interface Props {
   children: ReactNode;
 }
 
+export interface IUserLogin {
+  email: string;
+  password: string;
+}
+
+export interface IUserLoginContext {
+  modal: string;
+  setModal: React.Dispatch<React.SetStateAction<string>>;
+  signIn: (data: IUserLogin) => Promise<void>;
+}
+
 export interface ThemesContextType {
   theme: DefaultTheme;
   toggleTheme: () => void;

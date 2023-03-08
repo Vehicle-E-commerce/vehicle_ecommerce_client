@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { RegisterContext } from "../../contexts/Register";
 import { IUserRegister } from "../../interfaces";
 import Button from "../Button";
-import Input from "../Input";
+import { Input } from "../Input";
 import { DivInp, FormRegister, H1, Label, MainRegister } from "./styles";
 
 export const UserRegister = () => {
@@ -14,7 +14,6 @@ export const UserRegister = () => {
     state,
     accountType,
     handleAccountTypeChange,
-    setAccountType,
   } = useContext(RegisterContext);
 
   const {
@@ -89,7 +88,7 @@ export const UserRegister = () => {
         <h3>Informações de endereço</h3>
         <DivInp>
           <Label htmlFor="cep">CEP</Label>
-          <Input
+          <input
             id="cep"
             type="number"
             placeholder="00000.000"
