@@ -83,7 +83,7 @@ export const RegisterProvider: React.FC<Props> = ({ children }) => {
             fontWeight: "700",
           },
         });
-        navigate("/", { replace: true });
+        navigate("/login", { replace: true });
       })
       .catch((err) =>
         toast.error(err.message, {
