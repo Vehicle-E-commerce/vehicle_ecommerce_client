@@ -1,10 +1,15 @@
-import React from "react";
-import { Cont, Container, Title } from "./styles";
+import React, { useContext } from "react";
+import { ContFixed, Container, Title } from "./styles";
 import { SiExpo } from "react-icons/si";
 import styled from "styled-components";
+import { shade } from "polished";
+import { ThemesContext } from "../../contexts/Themes";
+import { ThemeContext } from "styled-components";
 
 
 const Footer: React.FC = () => {
+  const { colors, title } = useContext(ThemeContext);
+
   return (
     <Container>
         <footer>
@@ -15,11 +20,16 @@ const Footer: React.FC = () => {
             <p>
               &copy; {new Date().getFullYear()} - Todos os direitos reservados.
             </p>
+            
+            <div>
 
-            <Cont onClick={()=> window.scrollTo(0, 0)} >
+            <ContFixed 
+              onClick={()=> window.scrollTo(0, 0)}
+              >
 
                 <SiExpo/>
-            </Cont>
+            </ContFixed>
+            </div>
         </footer>
     </Container>
   );
