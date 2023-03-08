@@ -1,4 +1,5 @@
 import { Route, Routes } from "react-router-dom";
+import ChangePassword from "../pages/ChangePassword";
 import DeleteAnnouncementModal from "../components/DeleteAnnouncementModal";
 import EditAnnouncementModal from "../components/EditAnnouncementModal";
 import Announcement from "../pages/Announcement";
@@ -17,6 +18,7 @@ export default function clientRoutes() {
       <Route path="/register" element={<RegisterPage />} />
       <Route path="/login" element={<Login />} />
       <Route path="/recoveryPassword" element={<ResetPassword />} />
+      <Route path="/recoveryPassword/:token" element={<ChangePassword />} />
 
       <Route path="*" element={<Home />} />
     </Routes>

@@ -26,13 +26,10 @@ const Header: React.FC = () => {
 
   const { navigate } = useContext(AnnouncementContext);
 
-  // const {user, auth} = useContext(AuthContext)
-  // test de render
   const auth = true;
   const user = {
     is_Advertiser: true,
   };
-  // Gere um número aleatório para escolher a cor de fundo do círculo
   const colors_bg_icon_perfil = [
     "#FF7F50",
     "#00BFFF",
@@ -45,7 +42,7 @@ const Header: React.FC = () => {
   const number_color = Math.floor(Math.random() * colors_bg_icon_perfil.length);
 
   return (
-    <Container className="BB">
+    <Container>
       <Cont>
         <VerticalSwitchContainer>
           <Switch
@@ -80,13 +77,13 @@ const Header: React.FC = () => {
         <Cont width={"40rem"}>
           <Navegacao>
             <ul>
-              <li onClick={() => navigate("homepage")}>
+              <li>
                 <a href="#car-list">Carros</a>
               </li>
-              <li onClick={() => navigate("homepage")}>
+              <li>
                 <a href="#motorbike-list">Motos</a>
               </li>
-              <li onClick={() => navigate("homepage")}>
+              <li>
                 <a href="#auction-list">leilão</a>
               </li>
               <div className="vertical_line"></div>
