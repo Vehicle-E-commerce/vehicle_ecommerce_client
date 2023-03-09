@@ -87,6 +87,7 @@ const ChangePassword: React.FC = () => {
                     width="100%"
                     placeholder="Nova senha"
                     {...register("password")}
+                    required
                     />
                   <Input
                     id="confirm_password"
@@ -95,6 +96,7 @@ const ChangePassword: React.FC = () => {
                     width="100%"
                     placeholder="Confirme a senha"
                     {...register("confirm_password")}
+                    required
                     />
 
                   <Button
