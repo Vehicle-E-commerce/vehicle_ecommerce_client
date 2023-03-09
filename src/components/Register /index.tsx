@@ -88,7 +88,7 @@ export const UserRegister = () => {
         <h3>Informações de endereço</h3>
         <DivInp>
           <Label htmlFor="cep">CEP</Label>
-          <input
+          <Input
             id="cep"
             type="number"
             placeholder="00000.000"
