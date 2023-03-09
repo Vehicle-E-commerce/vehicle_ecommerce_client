@@ -6,6 +6,8 @@ import {
   useEffect,
   useState,
 } from "react";
+import { FieldValues, SubmitHandler } from "react-hook-form";
+import { toast } from "react-hot-toast";
 import { NavigateFunction, useNavigate } from "react-router-dom";
 import api from "../services/server";
 
@@ -16,6 +18,7 @@ interface IAnnouncementContext {
   navigate: NavigateFunction
   commentsByAnnouncement: (id_announcement: string) => Promise<void>
   catchExample: (event: any) => void
+  onSubmitCreateComment: SubmitHandler<FieldValues>
 
   announcementList: never[] | IAnnouncement[]
   setAnnouncementList: React.Dispatch<React.SetStateAction<never[]>>
@@ -54,7 +57,7 @@ interface IImages {
   created_at: Date;
   updated_at: Date;
 }
-interface IUser {
+export interface IUser {
   id: string;
   name: string;
   email: string;
@@ -67,7 +70,7 @@ interface IUser {
   updated_at: Date;
   address: IAddress;
 }
-interface IAddress {
+export interface IAddress {
   id: string;
   cep: string;
   state: string;
@@ -132,15 +135,39 @@ function AnnouncementProvider({children}: IAnnouncementProviders) {
       setExampleComment(example)
     }
   }
-  
-  const commentsByAnnouncement = async(id_announcement: string):Promise<void> => {
 
-    await api.get(`announcement/${id_announcement}/comments/`)
+  const onSubmitCreateComment: SubmitHandler<FieldValues> = (data) => {
+    api.defaults.headers.Authorization = `bearer ${localStorage.getItem("@token")}`
+    api.post(`announcement/${vehicleSpecific?.id}/comment/`, data)
       .then((res) => {
-        setCommentsAd(res.data)
+        toast.success("Comentário adicionado!", {
+          style: {
+            borderRadius: "10px",
+            background: "var( --Grey-2)",
+            color: "var(--Grey-0)",
+            fontSize: "14px",
+            fontWeight: "700",
+          },
+        });
       })
-      .catch((err) => console.log(err))
+      .catch((err) => {
+        console.log(err)
+      })
   }
+  
+  
+  const commentsByAnnouncement = async (id_announcement: any): Promise<any> => {
+    const res = await api.get(`announcement/${id_announcement}/comments/`);
+    return res.data;
+  };
+  
+  useEffect(() => {
+    commentsByAnnouncement(vehicleSpecific?.id)
+      .then((comments) => {
+        setCommentsAd(comments);
+      })
+      .catch((err) => console.log(err));
+  }, [vehicleSpecific?.id]);
 
   const announcementData = async ():Promise<void> => {
     await api.get("announcements/") 
@@ -166,6 +193,7 @@ function AnnouncementProvider({children}: IAnnouncementProviders) {
         navigate,
         commentsByAnnouncement,
         catchExample,
+        onSubmitCreateComment,
         setAnnouncementList,
         announcementList,
         setCarList,

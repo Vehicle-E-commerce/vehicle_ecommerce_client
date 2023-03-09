@@ -17,6 +17,7 @@ import {
 import { AnnouncementContext } from "../../contexts/announcementContext";
 import Button from "../Button";
 import MenuMobile from "../MenuMobile";
+import { LoginContext } from "../../contexts/Login";
 
 const Header: React.FC = () => {
   const { toggleTheme } = useContext(ThemesContext);
@@ -25,13 +26,10 @@ const Header: React.FC = () => {
   const isMobile = useMediaQuery({ maxWidth: 767 });
 
   const { navigate } = useContext(AnnouncementContext);
+  const { user } = useContext(LoginContext);
 
   // const {user, auth} = useContext(AuthContext)
   // test de render
-  const auth = true;
-  const user = {
-    is_Advertiser: true,
-  };
   // Gere um número aleatório para escolher a cor de fundo do círculo
   const colors_bg_icon_perfil = [
     "#FF7F50",
@@ -91,7 +89,7 @@ const Header: React.FC = () => {
               </li>
               <div className="vertical_line"></div>
 
-              {auth ? (
+              {user ? (
                 <>
                   <li onClick={() => setMenuMobVisible(!menuMobVisible)}>
                     <Cont
@@ -100,10 +98,11 @@ const Header: React.FC = () => {
                         backgroundColor: colors_bg_icon_perfil[number_color],
                       }}
                     >
-                      <p>U</p>
-                      <p>L</p>
+                      <p>{user.name.substring(0,1).toLocaleUpperCase()}</p>
                     </Cont>
-                    Usuario Logado
+                    <h2>
+                      {user.name}
+                    </h2>
                   </li>
                   <Cont isVisible={menuMobVisible}>
                     <nav className="perfil_menu">
@@ -114,7 +113,7 @@ const Header: React.FC = () => {
                         <li>
                           <a>Editar Endereço</a>
                         </li>
-                        {user.is_Advertiser ? (
+                        {user?.is_advertiser ? (
                           <li>
                             <a>Meus anuncios</a>
                           </li>
@@ -134,7 +133,9 @@ const Header: React.FC = () => {
                 <>
                   <li>
                     {" "}
-                    <a href="#"> Fazer Login</a>{" "}
+                    <a href="#" onClick={() => {
+                      navigate("login", {replace: true})
+                    }}> Fazer Login</a>{" "}
                   </li>
                   <li>
                     <Button width="133px" height="48px">
