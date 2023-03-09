@@ -146,7 +146,9 @@ const Header: React.FC = () => {
                     }}> Fazer Login</a>{" "}
                   </li>
                   <li>
-                    <Button width="133px" height="48px">
+                    <Button width="133px" height="48px" onClick={() => {
+                      navigate("/register", {replace: true})
+                    }}>
                       Cadastrar
                     </Button>
                   </li>
