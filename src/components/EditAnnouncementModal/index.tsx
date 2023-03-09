@@ -1,7 +1,11 @@
 import { ContainerModalEdit } from "./styles";
 import { VscClose } from "react-icons/vsc"
+import { useContext } from "react";
+import { AnnouncementContext } from "../../contexts/announcementContext";
 
 const EditAnnouncementModal = () => {
+
+  const { setUpdateAdModal, updateAdModal, setDeleteAdModal, deleteAdModal} = useContext(AnnouncementContext);
 
   return (
     <ContainerModalEdit>
@@ -10,7 +14,9 @@ const EditAnnouncementModal = () => {
 
           <div className="mini-header">
             <h2>Editar anúncio</h2>
-            <VscClose/>
+            <VscClose onClick={() => {
+              setUpdateAdModal(!updateAdModal)
+            }}/>
           </div>
 
           <h3>Tipo de anúncio</h3>
@@ -101,7 +107,10 @@ const EditAnnouncementModal = () => {
               </button>
             </div>
             <div className="edit-or-delete">
-              <button type="button" className="delete-btn">Excluir anúncio</button>
+              <button type="button" className="delete-btn" onClick={() => {
+                setUpdateAdModal(false)
+                setDeleteAdModal(!deleteAdModal)
+              }}>Excluir anúncio</button>
               <button type="submit" className="edit-btn">Salvar alterações</button>
             </div>
           </form>

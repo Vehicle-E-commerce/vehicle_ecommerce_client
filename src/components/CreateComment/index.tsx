@@ -23,17 +23,19 @@ const CreateComment = (userName: any) => {
 
   return (
     <ContainerCreateComment onClick={handleSubmit(onSubmitCreateComment)}>
-      <div className='user-box'>
-        <h2>{user?.name.substring(0,1).toUpperCase()}</h2>
-        <h3>{user?.name}</h3>
-      </div>
+      {user && 
+        <div className='user-box'>
+          <h2>{user?.name.substring(0,1).toUpperCase()}</h2>
+          <h3>{user?.name}</h3>
+        </div>
+      }
       <div className='input-box'>
         <input type="text"
           id='input'
           placeholder='Carro muito confortável, foi uma ótima experiência de compra...'
           {...register("comment")}
         />
-        <button type='submit'>Comentar</button>
+        <button type='submit' >Comentar</button>
       </div>
       <div className='examples'>
         <span onClick={catchExample} data-valor='Gostei muito!'>Gostei muito!</span>

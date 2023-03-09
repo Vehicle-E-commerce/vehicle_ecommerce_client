@@ -106,4 +106,26 @@ export const CardCar = styled.li`
       color: var(--grey1);
     }
   }
+
+  .btn-box {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: flex-start;
+    gap: 10px;
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--grey1);
+      border: 1.5px solid var(--grey1);
+      border-radius: 4px;
+      background-color: transparent;
+
+      :hover {
+        text-decoration: underline;
+      }
+    }
+  }
 `

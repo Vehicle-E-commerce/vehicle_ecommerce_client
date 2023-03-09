@@ -16,6 +16,7 @@ export interface IUserLoginContext {
   setModal: React.Dispatch<React.SetStateAction<string>>;
   signIn: (data: IUserLogin) => Promise<void>;
   user: null | IUser
+  logout: () => void
 }
 
 export interface ThemesContextType {

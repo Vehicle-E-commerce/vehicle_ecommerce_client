@@ -9,14 +9,26 @@ export const ContainerModalEdit = styled.div`
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   overflow-x: hidden;
+  ::-webkit-scrollbar {
+    width: 100%;               /* width of the entire scrollbar */
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;        /* color of the tracking area */
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: transparent;    /* color of the scroll thumb */
+    border-radius: 20px;       /* roundness of the scroll thumb */
+  }
 
   section {
     width: 100%;
     max-width: 520px;
     min-width: 346px;
     margin: 0 auto;
-    margin-top: 82px;
-    margin-bottom: 82px;
+    margin-top: 80px;
+    margin-bottom: 10px;
 
     @media (max-width: 600px) {
       margin: 100px 20px 0 20px;
@@ -210,7 +222,7 @@ export const ContainerModalEdit = styled.div`
           flex-direction: row;
           align-items: center;
           gap: 15px;
-          width: 103.5%;
+          width: 100%;
           padding: 30px 0 10px 0;
 
           .delete-btn {

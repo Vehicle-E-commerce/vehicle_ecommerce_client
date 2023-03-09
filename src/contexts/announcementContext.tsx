@@ -3,6 +3,7 @@ import {
   ReactNode,
   ReactPortal,
   SetStateAction,
+  useContext,
   useEffect,
   useState,
 } from "react";
@@ -10,6 +11,7 @@ import { FieldValues, SubmitHandler } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import { NavigateFunction, useNavigate } from "react-router-dom";
 import api from "../services/server";
+import { LoginContext } from "./Login";
 
 interface IAnnouncementProviders {
   children: ReactNode | ReactPortal;
@@ -19,6 +21,7 @@ interface IAnnouncementContext {
   commentsByAnnouncement: (id_announcement: string) => Promise<void>
   catchExample: (event: any) => void
   onSubmitCreateComment: SubmitHandler<FieldValues>
+  onDeleteAd: () => void
 
   announcementList: never[] | IAnnouncement[]
   setAnnouncementList: React.Dispatch<React.SetStateAction<never[]>>
@@ -36,6 +39,14 @@ interface IAnnouncementContext {
   setCommentsAd: React.Dispatch<SetStateAction<never[]>>
   exampleComment: string
   setExampleComment: React.Dispatch<SetStateAction<string>>
+  userEditModal: boolean
+  setUserEditModal: React.Dispatch<SetStateAction<boolean>>
+  userEditAddress: boolean
+  setUserEditAddress: React.Dispatch<SetStateAction<boolean>>
+  updateAdModal: boolean
+  setUpdateAdModal: React.Dispatch<SetStateAction<boolean>>
+  deleteAdModal: boolean
+  setDeleteAdModal: React.Dispatch<SetStateAction<boolean>>
 }
 interface IAnnouncement {
   id: string;
@@ -110,8 +121,8 @@ export const AnnouncementContext = createContext<IAnnouncementContext>({} as IAn
 
 function AnnouncementProvider({children}: IAnnouncementProviders) {
   
-  
-  
+  const { user } = useContext(LoginContext);
+
   const navigate = useNavigate();
   
   const [announcementList, setAnnouncementList] = useState([])
@@ -121,11 +132,18 @@ function AnnouncementProvider({children}: IAnnouncementProviders) {
   const [vehicleSpecific, setVehicleSpecific] = useState(null)
   const [imageToModal, setImageToModal] = useState('')
   const [imageModal, setImageModal] = useState(false)
-  const [exampleComment, setExampleComment] = useState('');
+  const [userEditModal, setUserEditModal] = useState(false)
+  const [userEditAddress, setUserEditAddress] = useState(false)
+  const [updateAdModal, setUpdateAdModal] = useState(false)
+  const [deleteAdModal, setDeleteAdModal] = useState(false)
+  const [exampleComment, setExampleComment] = useState('')
   
   document.onkeydown = function(e) {
     if(e.key === 'Escape') {
       setImageModal(false)
+      setUserEditAddress(false)
+      setUserEditModal(false)
+      setUpdateAdModal(false)
     }
   };
   
@@ -137,10 +155,33 @@ function AnnouncementProvider({children}: IAnnouncementProviders) {
   }
 
   const onSubmitCreateComment: SubmitHandler<FieldValues> = (data) => {
+    if(!user) {
+      navigate("login", {replace: true})
+      return;
+    }
     api.defaults.headers.Authorization = `bearer ${localStorage.getItem("@token")}`
     api.post(`announcement/${vehicleSpecific?.id}/comment/`, data)
       .then((res) => {
         toast.success("Comentário adicionado!", {
+          style: {
+            borderRadius: "10px",
+            background: "var( --Grey-2)",
+            color: "var(--Grey-0)",
+            fontSize: "14px",
+            fontWeight: "700",
+          },
+        });
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
+  const onDeleteAd = () => {
+    api.defaults.headers.Authorization = `bearer ${localStorage.getItem("@token")}`
+    api.delete(`announcements/${vehicleSpecific?.id}`)
+      .then((res) => {
+        setDeleteAdModal(false)
+        toast.success("Anúncio apagado!", {
           style: {
             borderRadius: "10px",
             background: "var( --Grey-2)",
@@ -194,6 +235,7 @@ function AnnouncementProvider({children}: IAnnouncementProviders) {
         commentsByAnnouncement,
         catchExample,
         onSubmitCreateComment,
+        onDeleteAd,
         setAnnouncementList,
         announcementList,
         setCarList,
@@ -209,7 +251,15 @@ function AnnouncementProvider({children}: IAnnouncementProviders) {
         setCommentsAd,
         commentsAd,
         setExampleComment,
-        exampleComment
+        exampleComment,
+        setUserEditAddress,
+        userEditAddress,
+        setUserEditModal,
+        userEditModal,
+        setUpdateAdModal,
+        updateAdModal,
+        setDeleteAdModal,
+        deleteAdModal
       }
     }>
       {children}

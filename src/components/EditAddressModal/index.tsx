@@ -1,7 +1,12 @@
+import { useContext } from "react"
 import { VscClose } from "react-icons/vsc"
+import { AnnouncementContext } from "../../contexts/announcementContext"
 import { ContainerEditAddress } from "./styles"
 
 const EditAddressModal = () => {
+
+  const { setUserEditAddress, userEditAddress } = useContext(AnnouncementContext);
+
   return (
     <ContainerEditAddress>
       <section>
@@ -9,7 +14,9 @@ const EditAddressModal = () => {
 
           <div className="mini-header">
             <h2>Editar endereço</h2>
-            <VscClose/>
+            <VscClose onClick={() => {
+              setUserEditAddress(!userEditAddress)
+            }}/>
           </div>
 
           <h3>Informações de endereço</h3>
