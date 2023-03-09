@@ -31,8 +31,8 @@ export default createGlobalStyle`
     --alert2: #FDD8D8;
     --alert3: #FFE5E5;
     --sucess1: #18794E;
-    --sucess1: #CCEBD7ç
-    --sucess1: #DDF3E4;
+    --sucess2: #CCEBD7;
+    --sucess3: #DDF3E4;
 
     --random1: #E34D8C;
     --random2: #C04277;

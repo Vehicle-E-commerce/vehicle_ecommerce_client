@@ -12,11 +12,12 @@ interface Props {
   children: ReactNode;
   className?: string;
   onClick?: () => void;
-  type?: string;
+  type?: "button" | "submit" | "reset"
 }
 
 const Button: React.FC<Props> = ({
   id,
+  type,
   children,
   height,
   margin,
@@ -39,6 +40,7 @@ const Button: React.FC<Props> = ({
       textColor={textColor}
       className={className}
       onClick={onClick}
+      type={type || "button"}
     >
       {children}
     </StyledButton>
