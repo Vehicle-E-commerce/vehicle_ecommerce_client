@@ -14,7 +14,7 @@ export const Container = styled.div`
   background: var(--grey0);
   
   footer {
-    width: 100vw;
+    width: 100%;
     display: flex;
     justify-content: space-around;
     p {
@@ -55,7 +55,7 @@ export const Title = styled.h1`
 `
 
 export const ContFixed = styled.div`
-  position: fixed;
+  /* position: fixed; */
   bottom: 7vh;
   right: 7vw;
   z-index: 1;
@@ -63,8 +63,8 @@ export const ContFixed = styled.div`
   height: 3rem;
   border-radius: 4px;
   background: var(--grey1);
-  opacity: 0.2;
-  box-shadow: 0px 1px 12px 0px rgba(233,236,239,1);
+  /* opacity: 0.2; */
+  /* box-shadow: 0px 1px 12px 0px rgba(233,236,239,1); */
 
   display: flex;
   align-items: center;
