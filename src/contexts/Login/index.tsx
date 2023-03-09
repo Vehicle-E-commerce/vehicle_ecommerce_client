@@ -27,6 +27,7 @@ export const LoginProvider: React.FC<Props> = ({ children }) => {
           },
         });
         navigate("/homepage", { replace: true });
+        location.reload()
       })
       .catch((err) => {
         toast.error("Email ou senha inválidos", {
@@ -50,13 +51,21 @@ export const LoginProvider: React.FC<Props> = ({ children }) => {
   useEffect(() => {
     dataRender()
   }, [])
+
+  const logout = () => {
+    localStorage.clear()
+    navigate("", {replace: true})
+    location.reload()
+  }
+
   return (
     <LoginContext.Provider
       value={{
         signIn,
         modal,
         setModal,
-        user
+        user,
+        logout
       }}
     >
       {children}

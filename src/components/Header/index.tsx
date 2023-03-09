@@ -25,8 +25,8 @@ const Header: React.FC = () => {
   const [menuMobVisible, setMenuMobVisible] = useState(false);
   const isMobile = useMediaQuery({ maxWidth: 767 });
 
-  const { navigate } = useContext(AnnouncementContext);
-  const { user } = useContext(LoginContext);
+  const { navigate, userEditAddress, userEditModal, setUserEditAddress, setUserEditModal } = useContext(AnnouncementContext);
+  const { user, logout } = useContext(LoginContext);
 
   // const {user, auth} = useContext(AuthContext)
   // test de render
@@ -108,14 +108,20 @@ const Header: React.FC = () => {
                     <nav className="perfil_menu">
                       <ul>
                         <li>
-                          <a>Editar Perfil</a>
+                          <a onClick={() => {
+                            setUserEditModal(!userEditModal)
+                          }}>Editar Perfil</a>
                         </li>
                         <li>
-                          <a>Editar Endereço</a>
+                          <a onClick={() => {
+                            setUserEditAddress(!userEditAddress)
+                          }}>Editar Endereço</a>
                         </li>
                         {user?.is_advertiser ? (
                           <li>
-                            <a>Meus anuncios</a>
+                            <a onClick={() => {
+                              navigate("/advertiserUser", { replace: true });
+                            }}>Meus anuncios</a>
                           </li>
                         ) : (
                           <li>
@@ -123,7 +129,9 @@ const Header: React.FC = () => {
                           </li>
                         )}
                         <li>
-                          <a>Sair</a>
+                          <a onClick={() => {
+                            logout()
+                          }}>Sair</a>
                         </li>
                       </ul>
                     </nav>
