@@ -8,7 +8,7 @@ import { ContainerComment, ContainerSpecificAnnouncement } from './styles'
 
 const SpecificAnnouncement = () => {
 
-  const {vehicleSpecific, setImageToModal, imageModal, setImageModal, commentsAd} = useContext(AnnouncementContext);
+  const {vehicleSpecific, setImageToModal, imageModal, setImageModal, commentsAd, navigate} = useContext(AnnouncementContext);
 
   return (
     <ContainerSpecificAnnouncement>
@@ -67,7 +67,9 @@ const SpecificAnnouncement = () => {
                   {vehicleSpecific?.user.name.split(" ")[1]}
                 </h3>
                 <p>{vehicleSpecific?.user.bio}</p>
-                <button>Ver todos anúncios</button>
+                <button onClick={() => {
+                  navigate("advertiser", {replace: true})
+                }}>Ver todos anúncios</button>
               </div>
             </aside>
           </div>
@@ -80,6 +82,7 @@ const SpecificAnnouncement = () => {
                   ?
                   commentsAd?.map((comment) => (
                     <Comment 
+                      key={comment.id}
                       userName={comment.user.name}
                       date={comment.created_at}
                       comment={comment.comment}

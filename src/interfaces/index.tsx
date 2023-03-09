@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import { DefaultTheme } from "styled-components";
+import { IUser } from "../contexts/announcementContext";
 
 export interface Props {
   children: ReactNode;
@@ -14,6 +15,8 @@ export interface IUserLoginContext {
   modal: string;
   setModal: React.Dispatch<React.SetStateAction<string>>;
   signIn: (data: IUserLogin) => Promise<void>;
+  user: null | IUser
+  logout: () => void
 }
 
 export interface ThemesContextType {

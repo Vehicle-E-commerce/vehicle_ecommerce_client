@@ -17,6 +17,7 @@ import {
 import { AnnouncementContext } from "../../contexts/announcementContext";
 import Button from "../Button";
 import MenuMobile from "../MenuMobile";
+import { LoginContext } from "../../contexts/Login";
 
 const Header: React.FC = () => {
   const { toggleTheme } = useContext(ThemesContext);
@@ -24,12 +25,9 @@ const Header: React.FC = () => {
   const [menuMobVisible, setMenuMobVisible] = useState(false);
   const isMobile = useMediaQuery({ maxWidth: 767 });
 
-  const { navigate } = useContext(AnnouncementContext);
-
-  const auth = true;
-  const user = {
-    is_Advertiser: true,
-  };
+  const { navigate, userEditAddress, userEditModal, setUserEditAddress, setUserEditModal } = useContext(AnnouncementContext);
+  const { user, logout } = useContext(LoginContext);
+  
   const colors_bg_icon_perfil = [
     "#FF7F50",
     "#00BFFF",
@@ -88,7 +86,7 @@ const Header: React.FC = () => {
               </li>
               <div className="vertical_line"></div>
 
-              {auth ? (
+              {user ? (
                 <>
                   <li onClick={() => setMenuMobVisible(!menuMobVisible)}>
                     <Cont
@@ -97,23 +95,30 @@ const Header: React.FC = () => {
                         backgroundColor: colors_bg_icon_perfil[number_color],
                       }}
                     >
-                      <p>U</p>
-                      <p>L</p>
+                      <p>{user.name.substring(0,1).toLocaleUpperCase()}</p>
                     </Cont>
-                    Usuario Logado
+                    <h2>
+                      {user.name}
+                    </h2>
                   </li>
                   <Cont isVisible={menuMobVisible}>
                     <nav className="perfil_menu">
                       <ul>
                         <li>
-                          <a>Editar Perfil</a>
+                          <a onClick={() => {
+                            setUserEditModal(!userEditModal)
+                          }}>Editar Perfil</a>
                         </li>
                         <li>
-                          <a>Editar Endereço</a>
+                          <a onClick={() => {
+                            setUserEditAddress(!userEditAddress)
+                          }}>Editar Endereço</a>
                         </li>
-                        {user.is_Advertiser ? (
+                        {user?.is_advertiser ? (
                           <li>
-                            <a>Meus anuncios</a>
+                            <a onClick={() => {
+                              navigate("/advertiserUser", { replace: true });
+                            }}>Meus anuncios</a>
                           </li>
                         ) : (
                           <li>
@@ -121,7 +126,9 @@ const Header: React.FC = () => {
                           </li>
                         )}
                         <li>
-                          <a>Sair</a>
+                          <a onClick={() => {
+                            logout()
+                          }}>Sair</a>
                         </li>
                       </ul>
                     </nav>
@@ -131,10 +138,14 @@ const Header: React.FC = () => {
                 <>
                   <li>
                     {" "}
-                    <a href="#"> Fazer Login</a>{" "}
+                    <a href="#" onClick={() => {
+                      navigate("login", {replace: true})
+                    }}> Fazer Login</a>{" "}
                   </li>
                   <li>
-                    <Button width="133px" height="48px">
+                    <Button width="133px" height="48px" onClick={() => {
+                      navigate("/register", {replace: true})
+                    }}>
                       Cadastrar
                     </Button>
                   </li>

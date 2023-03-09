@@ -3,11 +3,15 @@ import {
   ReactNode,
   ReactPortal,
   SetStateAction,
+  useContext,
   useEffect,
   useState,
 } from "react";
+import { FieldValues, SubmitHandler } from "react-hook-form";
+import { toast } from "react-hot-toast";
 import { NavigateFunction, useNavigate } from "react-router-dom";
 import api from "../services/server";
+import { LoginContext } from "./Login";
 
 interface IAnnouncementProviders {
   children: ReactNode | ReactPortal;
@@ -16,6 +20,8 @@ interface IAnnouncementContext {
   navigate: NavigateFunction
   commentsByAnnouncement: (id_announcement: string) => Promise<void>
   catchExample: (event: any) => void
+  onSubmitCreateComment: SubmitHandler<FieldValues>
+  onDeleteAd: () => void
 
   announcementList: never[] | IAnnouncement[]
   setAnnouncementList: React.Dispatch<React.SetStateAction<never[]>>
@@ -33,6 +39,14 @@ interface IAnnouncementContext {
   setCommentsAd: React.Dispatch<SetStateAction<never[]>>
   exampleComment: string
   setExampleComment: React.Dispatch<SetStateAction<string>>
+  userEditModal: boolean
+  setUserEditModal: React.Dispatch<SetStateAction<boolean>>
+  userEditAddress: boolean
+  setUserEditAddress: React.Dispatch<SetStateAction<boolean>>
+  updateAdModal: boolean
+  setUpdateAdModal: React.Dispatch<SetStateAction<boolean>>
+  deleteAdModal: boolean
+  setDeleteAdModal: React.Dispatch<SetStateAction<boolean>>
 }
 interface IAnnouncement {
   id: string;
@@ -54,7 +68,7 @@ interface IImages {
   created_at: Date;
   updated_at: Date;
 }
-interface IUser {
+export interface IUser {
   id: string;
   name: string;
   email: string;
@@ -67,7 +81,7 @@ interface IUser {
   updated_at: Date;
   address: IAddress;
 }
-interface IAddress {
+export interface IAddress {
   id: string;
   cep: string;
   state: string;
@@ -107,8 +121,8 @@ export const AnnouncementContext = createContext<IAnnouncementContext>({} as IAn
 
 function AnnouncementProvider({children}: IAnnouncementProviders) {
   
-  
-  
+  const { user } = useContext(LoginContext);
+
   const navigate = useNavigate();
   
   const [announcementList, setAnnouncementList] = useState([])
@@ -118,11 +132,18 @@ function AnnouncementProvider({children}: IAnnouncementProviders) {
   const [vehicleSpecific, setVehicleSpecific] = useState(null)
   const [imageToModal, setImageToModal] = useState('')
   const [imageModal, setImageModal] = useState(false)
-  const [exampleComment, setExampleComment] = useState('');
+  const [userEditModal, setUserEditModal] = useState(false)
+  const [userEditAddress, setUserEditAddress] = useState(false)
+  const [updateAdModal, setUpdateAdModal] = useState(false)
+  const [deleteAdModal, setDeleteAdModal] = useState(false)
+  const [exampleComment, setExampleComment] = useState('')
   
   document.onkeydown = function(e) {
     if(e.key === 'Escape') {
       setImageModal(false)
+      setUserEditAddress(false)
+      setUserEditModal(false)
+      setUpdateAdModal(false)
     }
   };
   
@@ -132,15 +153,62 @@ function AnnouncementProvider({children}: IAnnouncementProviders) {
       setExampleComment(example)
     }
   }
-  
-  const commentsByAnnouncement = async(id_announcement: string):Promise<void> => {
 
-    await api.get(`announcement/${id_announcement}/comments/`)
+  const onSubmitCreateComment: SubmitHandler<FieldValues> = (data) => {
+    if(!user) {
+      navigate("login", {replace: true})
+      return;
+    }
+    api.defaults.headers.Authorization = `bearer ${localStorage.getItem("@token")}`
+    api.post(`announcement/${vehicleSpecific?.id}/comment/`, data)
       .then((res) => {
-        setCommentsAd(res.data)
+        toast.success("Comentário adicionado!", {
+          style: {
+            borderRadius: "10px",
+            background: "var( --Grey-2)",
+            color: "var(--Grey-0)",
+            fontSize: "14px",
+            fontWeight: "700",
+          },
+        });
       })
-      .catch((err) => console.log(err))
+      .catch((err) => {
+        console.log(err)
+      })
   }
+  const onDeleteAd = () => {
+    api.defaults.headers.Authorization = `bearer ${localStorage.getItem("@token")}`
+    api.delete(`announcements/${vehicleSpecific?.id}`)
+      .then((res) => {
+        setDeleteAdModal(false)
+        toast.success("Anúncio apagado!", {
+          style: {
+            borderRadius: "10px",
+            background: "var( --Grey-2)",
+            color: "var(--Grey-0)",
+            fontSize: "14px",
+            fontWeight: "700",
+          },
+        });
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
+  
+  
+  const commentsByAnnouncement = async (id_announcement: any): Promise<any> => {
+    const res = await api.get(`announcement/${id_announcement}/comments/`);
+    return res.data;
+  };
+  
+  useEffect(() => {
+    commentsByAnnouncement(vehicleSpecific?.id)
+      .then((comments) => {
+        setCommentsAd(comments);
+      })
+      .catch((err) => console.log(err));
+  }, [vehicleSpecific?.id]);
 
   const announcementData = async ():Promise<void> => {
     await api.get("announcements/") 
@@ -166,6 +234,8 @@ function AnnouncementProvider({children}: IAnnouncementProviders) {
         navigate,
         commentsByAnnouncement,
         catchExample,
+        onSubmitCreateComment,
+        onDeleteAd,
         setAnnouncementList,
         announcementList,
         setCarList,
@@ -181,7 +251,15 @@ function AnnouncementProvider({children}: IAnnouncementProviders) {
         setCommentsAd,
         commentsAd,
         setExampleComment,
-        exampleComment
+        exampleComment,
+        setUserEditAddress,
+        userEditAddress,
+        setUserEditModal,
+        userEditModal,
+        setUpdateAdModal,
+        updateAdModal,
+        setDeleteAdModal,
+        deleteAdModal
       }
     }>
       {children}

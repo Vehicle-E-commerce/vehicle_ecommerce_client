@@ -2,6 +2,8 @@ import { Route, Routes } from "react-router-dom";
 import ChangePassword from "../pages/ChangePassword";
 import DeleteAnnouncementModal from "../components/DeleteAnnouncementModal";
 import EditAnnouncementModal from "../components/EditAnnouncementModal";
+import Advertiser from "../pages/Advertiser";
+import AdvertiserUser from "../pages/AdvertiserUser";
 import Announcement from "../pages/Announcement";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
@@ -18,7 +20,12 @@ export default function clientRoutes() {
       <Route path="/register" element={<RegisterPage />} />
       <Route path="/login" element={<Login />} />
       <Route path="/recoveryPassword" element={<ResetPassword />} />
+
       <Route path="/reset-password/:token" element={<ChangePassword />} />
+
+      <Route path="/advertiserUser" element={<AdvertiserUser/>} />
+      <Route path="/advertiser" element={<Advertiser/>}/>
+
 
       <Route path="*" element={<Home />} />
     </Routes>

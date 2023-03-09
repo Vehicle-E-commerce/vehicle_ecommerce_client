@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { IUserLogin, IUserLoginContext, Props } from "../../interfaces";
@@ -9,6 +9,7 @@ export const LoginContext = createContext({} as IUserLoginContext);
 export const LoginProvider: React.FC<Props> = ({ children }) => {
   const navigate = useNavigate();
   const [modal, setModal] = useState("login");
+  const [user, setUser] = useState(null);
 
   const signIn = async (data: IUserLogin) => {
     console.log(data);
@@ -26,6 +27,7 @@ export const LoginProvider: React.FC<Props> = ({ children }) => {
           },
         });
         navigate("/homepage", { replace: true });
+        location.reload()
       })
       .catch((err) => {
         toast.error("Email ou senha inválidos", {
@@ -39,12 +41,31 @@ export const LoginProvider: React.FC<Props> = ({ children }) => {
         });
       });
   };
+  const dataRender = async () => {
+    api.defaults.headers.Authorization = `bearer ${localStorage.getItem('@token')}`
+    await api.get("/user/")
+      .then((res) => {
+        setUser(res.data)
+      })
+  }
+  useEffect(() => {
+    dataRender()
+  }, [])
+
+  const logout = () => {
+    localStorage.clear()
+    navigate("", {replace: true})
+    location.reload()
+  }
+
   return (
     <LoginContext.Provider
       value={{
         signIn,
         modal,
         setModal,
+        user,
+        logout
       }}
     >
       {children}
