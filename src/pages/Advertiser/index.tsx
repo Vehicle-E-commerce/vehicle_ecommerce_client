@@ -5,6 +5,7 @@ import EditAnnouncementModal from '../../components/EditAnnouncementModal'
 import EditUserModal from '../../components/EditUserModal'
 import Footer from '../../components/Footer'
 import Header from '../../components/Header'
+import MainRandomUserAnnouncement from '../../components/MainRandomUserAnnouncement'
 import MainUserAnnouncement from '../../components/MainUserAnnouncements'
 import { AnnouncementContext } from '../../contexts/announcementContext'
 import { ContainerAdvertiserUser } from './styles'
@@ -20,7 +21,7 @@ const Advertiser = () => {
       {updateAdModal && <EditAnnouncementModal/>}
       {deleteAdModal && <DeleteAnnouncementModal/>}
       <Header/>
-      <MainUserAnnouncement/>
+      <MainRandomUserAnnouncement/>
       <Footer/>
     </ContainerAdvertiserUser>
   )

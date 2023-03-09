@@ -20,7 +20,7 @@ const MainRandomUserAnnouncement = () => {
           <span>{vehicleSpecific?.user.is_advertiser && "Anunciante"}</span>
         </div>
         <p>{vehicleSpecific?.user.bio}</p>
-        {user && 
+        {user?.id === vehicleSpecific?.user.id && 
           <button>Criar anúncio</button>
         }
       </ContainerArticleUser>
