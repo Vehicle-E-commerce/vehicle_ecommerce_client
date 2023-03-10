@@ -14,7 +14,7 @@ import { LoginContext } from "./Login";
 export const AnnouncementContext = createContext<IAnnouncementContext>(
   {} as IAnnouncementContext
 );
-
+ 
 function AnnouncementProvider({ children }: IAnnouncementProviders) {
   const { user } = useContext(LoginContext);
 
@@ -35,6 +35,8 @@ function AnnouncementProvider({ children }: IAnnouncementProviders) {
   const [deleteAdModal, setDeleteAdModal] = useState(false);
   const [exampleComment, setExampleComment] = useState("");
   const [isCreateAnnou, setIsCreateAnnou] = useState(false);
+  const [commentSelect, setCommentSelect] = useState('')
+  const [commentModal, setCommentModal] = useState(false)
 
   document.onkeydown = function (e) {
     if (e.key === "Escape") {
@@ -42,6 +44,7 @@ function AnnouncementProvider({ children }: IAnnouncementProviders) {
       setUserEditAddress(false);
       setUserEditModal(false);
       setUpdateAdModal(false);
+      setCommentModal(false);
     }
   };
 
@@ -74,9 +77,45 @@ function AnnouncementProvider({ children }: IAnnouncementProviders) {
         });
       })
       .catch((err) => {
-        console.log(err);
-      });
-  };
+        console.log(err)
+      })
+  }
+  const onSubmitUpdateComment: SubmitHandler<FieldValues> = (data) => {
+    api.defaults.headers.Authorization = `bearer ${localStorage.getItem("@token")}`
+    console.log(commentSelect)
+    api.patch(`announcement/comment/${commentSelect}`, data)
+      .then((res) => {
+        toast.success("Comentário atualizado!", {
+          style: {
+            borderRadius: "10px",
+            background: "var( --Grey-2)",
+            color: "var(--Grey-0)",
+            fontSize: "14px",
+            fontWeight: "700",
+          },
+        });
+        setCommentModal(!commentModal)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
+  const onDeleteComment = () => {
+    api.defaults.headers.Authorization = `bearer ${localStorage.getItem("@token")}`
+    api.delete(`announcement/comment/${commentSelect}`)
+      .then(() => {
+        setCommentModal(!commentModal)
+        toast.success("Comentário apagado!", {
+          style: {
+            borderRadius: "10px",
+            background: "var( --Grey-2)",
+            color: "var(--Grey-0)",
+            fontSize: "14px",
+            fontWeight: "700",
+          },
+        });
+      })
+  }
   const onDeleteAd = () => {
     api.defaults.headers.Authorization = `bearer ${localStorage.getItem(
       "@token"
@@ -164,7 +203,9 @@ function AnnouncementProvider({ children }: IAnnouncementProviders) {
         commentsByAnnouncement,
         catchExample,
         onSubmitCreateComment,
+        onSubmitUpdateComment,
         onDeleteAd,
+        onDeleteComment,
         setAnnouncementList,
         announcementList,
         setCarList,
@@ -189,10 +230,14 @@ function AnnouncementProvider({ children }: IAnnouncementProviders) {
         updateAdModal,
         setDeleteAdModal,
         deleteAdModal,
+        setCommentModal,
+        commentModal,
+        setCommentSelect,
+        commentSelect,
         openAndClosedModalCreateAnnou,
         isCreateAnnou,
-      }}
-    >
+      }
+    }>
       {children}
     </AnnouncementContext.Provider>
   );
