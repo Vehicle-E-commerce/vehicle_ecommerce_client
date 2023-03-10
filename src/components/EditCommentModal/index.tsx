@@ -19,13 +19,12 @@ const EditCommentModal = () => {
         <div className="base-modal">
 
           <div className="mini-header">
-            <h2>Excluir anúncio</h2>
+            <h2>Editar anúncio</h2>
             <VscClose onClick={() => {
               setCommentModal(false)
             }}/>
           </div>
           <form onSubmit={handleSubmit(onSubmitUpdateComment)}>
-            <label>Editar comentário</label>
             <textarea 
               placeholder="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nesciunt earum odio omnis voluptates quasi quisquam eaque fugit qui placeat quibusdam tempora quia non ad, illo dolore nihil velit provident. Obcaecati!"
               {...register("comment")}
