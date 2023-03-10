@@ -1,4 +1,3 @@
-import { ReactNode } from "react";
 import { Dispatch, ReactNode, ReactPortal, SetStateAction } from "react";
 import { FieldValues, SubmitHandler } from "react-hook-form";
 import { NavigateFunction } from "react-router-dom";
@@ -174,7 +173,7 @@ export interface IAnnouncementContext {
   setImageToModal: React.Dispatch<SetStateAction<string>>;
   imageModal: boolean;
   setImageModal: React.Dispatch<SetStateAction<boolean>>;
-  commentsAd: [] | IComment[];
+  commentsAd: never[] | IComment[];
   exampleComment: string;
   setExampleComment: React.Dispatch<SetStateAction<string>>;
   userEditModal: boolean;
@@ -192,4 +191,18 @@ export interface IAnnouncementContext {
   setCommentsAd: Dispatch<SetStateAction<IComment[]>>;
   openAndClosedModalCreateAnnou: () => void;
   isCreateAnnou: boolean;
+  onSubmitUpdateComment: SubmitHandler<FieldValues>
+  onDeleteComment: () => void
+  setCarListUser: React.Dispatch<React.SetStateAction<IAnnouncement[]>>
+  carListUser: [] | IAnnouncement[]
+  setMotorBikeListUser: React.Dispatch<React.SetStateAction<IAnnouncement[]>>
+  motorBikeListUser: [] | IAnnouncement[]
+  setCarListRandomUser: React.Dispatch<React.SetStateAction<IAnnouncement[]>>
+  carListRandomUser:[] | IAnnouncement[]
+  setMotorBikeListRandomUser: React.Dispatch<React.SetStateAction<IAnnouncement[]>>
+  motorBikeListRandomUser: [] | IAnnouncement[]
+  setCommentModal: React.Dispatch<React.SetStateAction<boolean>>
+  commentModal: boolean
+  setCommentSelect: React.Dispatch<React.SetStateAction<string>>
+  commentSelect: string
 }

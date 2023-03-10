@@ -37,10 +37,10 @@ function AnnouncementProvider({ children }: IAnnouncementProviders) {
   const [isCreateAnnou, setIsCreateAnnou] = useState(false);
   const [commentSelect, setCommentSelect] = useState('')
   const [commentModal, setCommentModal] = useState(false)
-  const [carListUser, setCarListUser] = useState([])
-  const [motorBikeListUser, setMotorBikeListUser] = useState([])
-  const [carListRandomUser, setCarListRandomUser] = useState([])
-  const [motorBikeListRandomUser, setMotorBikeListRandomUser] = useState([])
+  const [carListUser, setCarListUser] = useState<IAnnouncement[]>([])
+  const [motorBikeListUser, setMotorBikeListUser] = useState<IAnnouncement[]>([])
+  const [carListRandomUser, setCarListRandomUser] = useState<IAnnouncement[]>([])
+  const [motorBikeListRandomUser, setMotorBikeListRandomUser] = useState<IAnnouncement[]>([])
   const [newComment, setNewComment] = useState(false)
 
   document.onkeydown = function (e) {

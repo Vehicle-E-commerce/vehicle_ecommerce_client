@@ -29,8 +29,7 @@ const CardsCar = ({
     <CardCar
       onClick={() => {
         setVehicleSpecific(data);
-        console.log(data)
-          localStorage.setItem("announcementID", data.id);
+        localStorage.setItem("announcementID", data.id);
       }}
     >
       <figure
@@ -48,7 +47,7 @@ const CardsCar = ({
           <h2>{user_name && user_name[0].toLocaleUpperCase()}</h2>
           <h3>{user_name}</h3>
         </div>
-      )}
+      }
       <div className="data-box">
         <div className="km-date">
           <span>{mileage} KM</span>
@@ -75,7 +74,7 @@ const CardsCar = ({
             Ver como
           </button>
         </div>
-      )}
+      }
     </CardCar>
   );
 };
