@@ -162,6 +162,7 @@ export interface IAnnouncementContext {
   catchExample: (event: any) => void;
   onSubmitCreateComment: SubmitHandler<FieldValues>;
   onDeleteAd: () => void;
+  onEditAd: SubmitHandler<FieldValues>;
 
   announcementList: [] | IAnnouncement[];
   carList: [] | IAnnouncement[];

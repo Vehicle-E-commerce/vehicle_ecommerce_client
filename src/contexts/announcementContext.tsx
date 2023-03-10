@@ -295,6 +295,6 @@ function AnnouncementProvider({ children }: IAnnouncementProviders) {
       {children}
     </AnnouncementContext.Provider>
   );
-}
+}}
 
 export default AnnouncementProvider;

@@ -2,7 +2,7 @@ import { ContainerModalEdit } from "./styles";
 import { VscClose } from "react-icons/vsc"
 import { useContext, useEffect, useState } from "react";
 import { AnnouncementContext } from "../../contexts/announcementContext";
-import { IImages } from "../../contexts/announcementContext";
+import { IImages } from "../../interfaces";
 import { Input } from "../Input";
 import { useForm } from "react-hook-form";
 
