@@ -48,6 +48,14 @@ interface IAnnouncementContext {
   setUpdateAdModal: React.Dispatch<SetStateAction<boolean>>
   deleteAdModal: boolean
   setDeleteAdModal: React.Dispatch<SetStateAction<boolean>>
+  carListUser: never[] | IAnnouncement[]
+  setCarListUser: React.Dispatch<SetStateAction<never[]>>
+  motorBikeListUser: never[] | IAnnouncement[]
+  setMotorBikeListUser: React.Dispatch<SetStateAction<never[]>>
+  carListRandomUser: never[] | IAnnouncement[]
+  setCarListRandomUser: React.Dispatch<SetStateAction<never[]>>
+  motorBikeListRandomUser: never[] | IAnnouncement[]
+  setMotorBikeListRandomUser: React.Dispatch<SetStateAction<never[]>>
 }
 interface IAnnouncement {
   id: string;
@@ -110,7 +118,7 @@ export interface ICardData {
   price: number;
   bio: string;
   user_name: string;
-  data: SetStateAction<null>;
+  data: SetStateAction<null> ;
 }
 export interface ICommentData {
   userName: string,
@@ -129,6 +137,10 @@ function AnnouncementProvider({children}: IAnnouncementProviders) {
   const [announcementList, setAnnouncementList] = useState([])
   const [carList, setCarList] = useState([])
   const [motorbikeList, setMotorbikeList] = useState([])
+  const [carListUser, setCarListUser] = useState([])
+  const [motorBikeListUser, setMotorBikeListUser] = useState([])
+  const [carListRandomUser, setCarListRandomUser] = useState([])
+  const [motorBikeListRandomUser, setMotorBikeListRandomUser] = useState([])
   const [commentsAd, setCommentsAd] = useState([])
   const [vehicleSpecific, setVehicleSpecific] = useState(null)
   const [imageToModal, setImageToModal] = useState('')
@@ -138,6 +150,7 @@ function AnnouncementProvider({children}: IAnnouncementProviders) {
   const [updateAdModal, setUpdateAdModal] = useState(false)
   const [deleteAdModal, setDeleteAdModal] = useState(false)
   const [exampleComment, setExampleComment] = useState('')
+  const [newComment, setNewComment] = useState(false)
   
   document.onkeydown = function(e) {
     if(e.key === 'Escape') {
@@ -148,6 +161,17 @@ function AnnouncementProvider({children}: IAnnouncementProviders) {
     }
   };
   
+  useEffect(() => {
+    if(user) {
+      setCarListUser(carList.filter((car) => car.user.id === user.id))
+      setMotorBikeListUser(motorbikeList.filter((motor) => motor.user.id === user.id))
+    }
+    if(vehicleSpecific) {
+      setCarListRandomUser(carList.filter((car) => car.user.id === vehicleSpecific.user.id))
+      setMotorBikeListRandomUser(motorbikeList.filter((motor) => motor.user.id === vehicleSpecific.user.id))
+    }
+  }, [user, vehicleSpecific])
+
   const catchExample = (event:any) => {
     const example = event.target.getAttribute("data-valor");
     if(example){
@@ -172,6 +196,7 @@ function AnnouncementProvider({children}: IAnnouncementProviders) {
             fontWeight: "700",
           },
         });
+        setNewComment(!newComment)
       })
       .catch((err) => {
         console.log(err)
@@ -209,7 +234,7 @@ function AnnouncementProvider({children}: IAnnouncementProviders) {
         setCommentsAd(comments);
       })
       .catch((err) => console.log(err));
-  }, [vehicleSpecific?.id]);
+  }, [newComment, vehicleSpecific]);
 
   const announcementData = async ():Promise<void> => {
     await api.get("announcements/") 
@@ -260,7 +285,15 @@ function AnnouncementProvider({children}: IAnnouncementProviders) {
         setUpdateAdModal,
         updateAdModal,
         setDeleteAdModal,
-        deleteAdModal
+        deleteAdModal,
+        setCarListUser,
+        carListUser,
+        setMotorBikeListUser,
+        motorBikeListUser,
+        setCarListRandomUser,
+        carListRandomUser,
+        setMotorBikeListRandomUser,
+        motorBikeListRandomUser,
       }
     }>
       {children}

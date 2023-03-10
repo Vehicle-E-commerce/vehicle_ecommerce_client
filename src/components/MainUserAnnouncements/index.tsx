@@ -1,8 +1,8 @@
 import { useContext } from "react"
 import { LoginContext } from "../../contexts/Login"
 import AuctionList from "../AuctionList"
-import Carlist from "../CarList"
-import MotorBikelist from "../MotorBikeList"
+import CarlistUser from "../CarListUser"
+import MotorBikelistUser from "../MotorBikeListUser"
 import { ContainerArticleUser, ContainerMainUserAnnouncement } from "./styles"
 
 const MainUserAnnouncement = () => {
@@ -23,8 +23,8 @@ const MainUserAnnouncement = () => {
         </button>
       </ContainerArticleUser>
       <AuctionList/>
-      <Carlist/>
-      <MotorBikelist/>
+      <CarlistUser/>
+      <MotorBikelistUser/>
     </ContainerMainUserAnnouncement>
   )
 }
