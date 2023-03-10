@@ -37,6 +37,10 @@ export interface RegisterContextType {
   handleAccountTypeChange: (event: { target: { value: string } }) => void;
 }
 
+export interface AddressContextType {
+  updateAddressUser: (data: IAddress) => void;
+}
+
 export interface IUserRegister {
   name: string;
   email: string;
