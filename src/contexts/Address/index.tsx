@@ -17,6 +17,7 @@ export const AddressProvider: React.FC<Props> = ({ children }) => {
     api
       .patch("/address", data)
       .then((res) => {
+        setUserEditAddress(!userEditAddress);
         toast.success("Endereço atualizado!", {
           style: {
             borderRadius: "10px",

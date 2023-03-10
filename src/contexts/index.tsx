@@ -7,17 +7,17 @@ import { ThemesProvider } from "./Themes";
 
 const Providers: React.FC<Props> = ({ children }) => {
   return (
-    <AddressProvider>
-      <LoginProvider>
-        <RegisterProvider>
-          <ThemesProvider>
-            <AnnouncementProvider>
+    <LoginProvider>
+      <RegisterProvider>
+        <ThemesProvider>
+          <AnnouncementProvider>
+            <AddressProvider>
               <ThemesProvider>{children}</ThemesProvider>
-            </AnnouncementProvider>
-          </ThemesProvider>
-        </RegisterProvider>
-      </LoginProvider>
-    </AddressProvider>
+            </AddressProvider>
+          </AnnouncementProvider>
+        </ThemesProvider>
+      </RegisterProvider>
+    </LoginProvider>
   );
 };
 

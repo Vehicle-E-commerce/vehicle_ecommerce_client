@@ -94,7 +94,14 @@ const EditAddressModal = () => {
             </div>
 
             <div className="btn-box">
-              <button className="close">Cancelar</button>
+              <button
+                className="close"
+                onClick={() => {
+                  setUserEditAddress(!userEditAddress);
+                }}
+              >
+                Cancelar
+              </button>
               <button type="submit" className="edit">
                 Salvar alterações
               </button>
