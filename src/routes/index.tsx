@@ -9,6 +9,7 @@ import Home from "../pages/Home";
 import Login from "../pages/Login";
 import ResetPassword from "../pages/RecoveryPassword";
 import RegisterPage from "../pages/Register";
+import CreateAnnouncement from "../Adverts/Created";
 
 export default function clientRoutes() {
   return (
@@ -23,9 +24,10 @@ export default function clientRoutes() {
 
       <Route path="/reset-password/:token" element={<ChangePassword />} />
 
-      <Route path="/advertiserUser" element={<AdvertiserUser/>} />
-      <Route path="/advertiser" element={<Advertiser/>}/>
+      <Route path="/advertiserUser" element={<AdvertiserUser />} />
+      <Route path="/advertiser" element={<Advertiser />} />
 
+      <Route path="/createAnnuncement" element={<CreateAnnouncement />} />
 
       <Route path="*" element={<Home />} />
     </Routes>

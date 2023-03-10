@@ -22,7 +22,7 @@ const CreateComment = (userName: any) => {
   }, [exampleComment]);
 
   return (
-    <ContainerCreateComment onClick={handleSubmit(onSubmitCreateComment)}>
+    <ContainerCreateComment onSubmit={handleSubmit(onSubmitCreateComment)}>
       {user && 
         <div className='user-box'>
           <h2>{user?.name.substring(0,1).toUpperCase()}</h2>

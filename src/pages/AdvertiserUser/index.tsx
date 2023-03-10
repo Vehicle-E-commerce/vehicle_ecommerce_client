@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import { useContext } from 'react'
 import DeleteAnnouncementModal from '../../components/DeleteAnnouncementModal'
 import EditAddressModal from '../../components/EditAddressModal'
 import EditAnnouncementModal from '../../components/EditAnnouncementModal'
