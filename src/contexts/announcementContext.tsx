@@ -37,6 +37,11 @@ function AnnouncementProvider({ children }: IAnnouncementProviders) {
   const [isCreateAnnou, setIsCreateAnnou] = useState(false);
   const [commentSelect, setCommentSelect] = useState('')
   const [commentModal, setCommentModal] = useState(false)
+  const [carListUser, setCarListUser] = useState([])
+  const [motorBikeListUser, setMotorBikeListUser] = useState([])
+  const [carListRandomUser, setCarListRandomUser] = useState([])
+  const [motorBikeListRandomUser, setMotorBikeListRandomUser] = useState([])
+  const [newComment, setNewComment] = useState(false)
 
   document.onkeydown = function (e) {
     if (e.key === "Escape") {
@@ -47,6 +52,17 @@ function AnnouncementProvider({ children }: IAnnouncementProviders) {
       setCommentModal(false);
     }
   };
+  
+  useEffect(() => {
+    if(user) {
+      setCarListUser(carList.filter((car) => car.user.id === user.id))
+      setMotorBikeListUser(motorbikeList.filter((motor) => motor.user.id === user.id))
+    }
+    if(vehicleSpecific) {
+      setCarListRandomUser(carList.filter((car) => car.user.id === vehicleSpecific.user.id))
+      setMotorBikeListRandomUser(motorbikeList.filter((motor) => motor.user.id === vehicleSpecific.user.id))
+    }
+  }, [user, vehicleSpecific])
 
   const catchExample = (event: any) => {
     const example = event.target.getAttribute("data-valor");
@@ -75,6 +91,7 @@ function AnnouncementProvider({ children }: IAnnouncementProviders) {
             fontWeight: "700",
           },
         });
+        setNewComment(!newComment)
       })
       .catch((err) => {
         console.log(err)
@@ -152,7 +169,7 @@ function AnnouncementProvider({ children }: IAnnouncementProviders) {
         setCommentsAd(comments);
       })
       .catch((err) => console.log(err));
-  }, [vehicleSpecific?.id]);
+  }, [newComment, vehicleSpecific]);
 
   const announcementData = async (): Promise<void> => {
     await api
@@ -230,6 +247,14 @@ function AnnouncementProvider({ children }: IAnnouncementProviders) {
         updateAdModal,
         setDeleteAdModal,
         deleteAdModal,
+        setCarListUser,
+        carListUser,
+        setMotorBikeListUser,
+        motorBikeListUser,
+        setCarListRandomUser,
+        carListRandomUser,
+        setMotorBikeListRandomUser,
+        motorBikeListRandomUser,
         setCommentModal,
         commentModal,
         setCommentSelect,

@@ -1,9 +1,12 @@
+
 import { useContext } from "react";
 import CreateAnnouncement from "../../Adverts/Created";
 import { AnnouncementContext } from "../../contexts/announcementContext";
 import { LoginContext } from "../../contexts/Login";
 import AuctionList from "../AuctionList";
 import Carlist from "../CarList";
+import CarlistUser from "../CarListUser"
+import MotorBikelistUser from "../MotorBikeListUser"
 import MotorBikelist from "../MotorBikeList";
 import { ContainerArticleUser, ContainerMainUserAnnouncement } from "./styles";
 
