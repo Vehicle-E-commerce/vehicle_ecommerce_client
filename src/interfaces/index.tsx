@@ -180,4 +180,6 @@ export interface IAnnouncementContext {
   setMotorbikeList: Dispatch<SetStateAction<IAnnouncement[]>>;
   vehicleSpecific: IAnnouncement | null;
   setCommentsAd: Dispatch<SetStateAction<IComment[]>>;
+  openAndClosedModalCreateAnnou: () => void;
+  isCreateAnnou: boolean;
 }

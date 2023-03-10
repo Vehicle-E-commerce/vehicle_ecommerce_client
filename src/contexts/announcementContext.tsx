@@ -34,6 +34,7 @@ function AnnouncementProvider({ children }: IAnnouncementProviders) {
   const [updateAdModal, setUpdateAdModal] = useState(false);
   const [deleteAdModal, setDeleteAdModal] = useState(false);
   const [exampleComment, setExampleComment] = useState("");
+  const [isCreateAnnou, setIsCreateAnnou] = useState(false);
 
   document.onkeydown = function (e) {
     if (e.key === "Escape") {
@@ -131,22 +132,30 @@ function AnnouncementProvider({ children }: IAnnouncementProviders) {
       });
   };
 
-   const announcement = async (): Promise<void> => {
-     await api
-       .get(`announcements/${localStorage.getItem("announcementID")}`)
-       .then((res) => {
-         setVehicleSpecific(res.data);
-         console.log(res.data)
-       })
-       .catch((err) => {
-         console.log(err);
-       });
-   };
+  const announcement = async (): Promise<void> => {
+    await api
+      .get(`announcements/${localStorage.getItem("announcementID")}`)
+      .then((res) => {
+        setVehicleSpecific(res.data);
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   useEffect(() => {
     announcementData();
     announcement();
   }, [localStorage.getItem("announcementID")]);
+
+  const openAndClosedModalCreateAnnou = () => {
+    if (isCreateAnnou) {
+      setIsCreateAnnou(false);
+    } else {
+      setIsCreateAnnou(true);
+    }
+  };
 
   return (
     <AnnouncementContext.Provider
@@ -180,6 +189,8 @@ function AnnouncementProvider({ children }: IAnnouncementProviders) {
         updateAdModal,
         setDeleteAdModal,
         deleteAdModal,
+        openAndClosedModalCreateAnnou,
+        isCreateAnnou,
       }}
     >
       {children}
