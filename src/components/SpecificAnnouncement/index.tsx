@@ -96,9 +96,11 @@ const SpecificAnnouncement = () => {
                   commentsAd?.map((comment) => (
                     <Comment
                       key={comment.id}
+                      id={comment.id}
                       userName={comment.user.name}
                       date={comment.created_at}
                       comment={comment.comment}
+                      userId={comment.user.id}
                     />
                   ))
                 ) : (

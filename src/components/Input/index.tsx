@@ -12,11 +12,12 @@ interface Props extends InputHTMLAttributes<HTMLInputElement> {
   border?: string;
   textColor?: string;
   margin?: string;
+  name?:string
   onCharge?: React.ChangeEventHandler<HTMLInputElement> | undefined;
 }
 
 const InputBase: ForwardRefRenderFunction<HTMLInputElement, Props> = (
-  { height, width, backColor, border, textColor, margin, onCharge, ...rest },
+  { height, width, backColor, border, textColor, margin, name, onCharge, ...rest },
   ref
 ) => {
   return (
@@ -26,6 +27,7 @@ const InputBase: ForwardRefRenderFunction<HTMLInputElement, Props> = (
       backColor={backColor}
       border={border}
       textColor={textColor}
+      name={name}
       onChange={onCharge}
       ref={ref}
       {...rest}

@@ -16,8 +16,9 @@ export interface IUserLoginContext {
   modal: string;
   setModal: React.Dispatch<React.SetStateAction<string>>;
   signIn: (data: IUserLogin) => Promise<void>;
-  user: null | IUser;
-  logout: () => void;
+  user: null | IUser
+  logout: () => void
+  onSubmitUpdateUser: SubmitHandler<FieldValues>
 }
 
 export interface ThemesContextType {
@@ -79,6 +80,14 @@ export interface IUserRegisterData {
   confirm_password: string;
 }
 
+export interface IUserUpdate {
+  name: string,
+  email: string,
+  cpf: string,
+  telephone: string,
+  birth_date: string,
+  bio: string
+}
 export interface IAnnouncement {
   id: string;
   title: string;
@@ -157,6 +166,7 @@ export interface IAnnouncementContext {
   catchExample: (event: any) => void;
   onSubmitCreateComment: SubmitHandler<FieldValues>;
   onDeleteAd: () => void;
+  onEditAd: SubmitHandler<FieldValues>;
 
   announcementList: [] | IAnnouncement[];
   carList: [] | IAnnouncement[];
@@ -168,7 +178,7 @@ export interface IAnnouncementContext {
   setImageToModal: React.Dispatch<SetStateAction<string>>;
   imageModal: boolean;
   setImageModal: React.Dispatch<SetStateAction<boolean>>;
-  commentsAd: [] | IComment[];
+  commentsAd: never[] | IComment[];
   exampleComment: string;
   setExampleComment: React.Dispatch<SetStateAction<string>>;
   userEditModal: boolean;
@@ -186,4 +196,18 @@ export interface IAnnouncementContext {
   setCommentsAd: Dispatch<SetStateAction<IComment[]>>;
   openAndClosedModalCreateAnnou: () => void;
   isCreateAnnou: boolean;
+  onSubmitUpdateComment: SubmitHandler<FieldValues>
+  onDeleteComment: () => void
+  setCarListUser: React.Dispatch<React.SetStateAction<IAnnouncement[]>>
+  carListUser: [] | IAnnouncement[]
+  setMotorBikeListUser: React.Dispatch<React.SetStateAction<IAnnouncement[]>>
+  motorBikeListUser: [] | IAnnouncement[]
+  setCarListRandomUser: React.Dispatch<React.SetStateAction<IAnnouncement[]>>
+  carListRandomUser:[] | IAnnouncement[]
+  setMotorBikeListRandomUser: React.Dispatch<React.SetStateAction<IAnnouncement[]>>
+  motorBikeListRandomUser: [] | IAnnouncement[]
+  setCommentModal: React.Dispatch<React.SetStateAction<boolean>>
+  commentModal: boolean
+  setCommentSelect: React.Dispatch<React.SetStateAction<string>>
+  commentSelect: string
 }

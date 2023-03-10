@@ -1,6 +1,7 @@
 import { useContext } from "react"
 import DeleteAnnouncementModal from "../../components/DeleteAnnouncementModal"
 import EditAddressModal from "../../components/EditAddressModal"
+import EditCommentModal from "../../components/EditCommentModal"
 import EditUserModal from "../../components/EditUserModal"
 import Footer from "../../components/Footer"
 import Header from "../../components/Header"
@@ -12,7 +13,7 @@ import { ContainerAnnouncement } from "./styles"
 
 const Announcement: React.FC = () => {
 
-  const {imageModal, userEditAddress, userEditModal, deleteAdModal} = useContext(AnnouncementContext);
+  const {imageModal, userEditAddress, userEditModal, deleteAdModal, commentModal} = useContext(AnnouncementContext);
 
   return (
     <ContainerAnnouncement>
@@ -20,6 +21,7 @@ const Announcement: React.FC = () => {
       {userEditAddress && <EditAddressModal/>}
       {userEditModal && <EditUserModal/>}
       {deleteAdModal && <DeleteAnnouncementModal/>}
+      {commentModal && <EditCommentModal/>}
       <Header/>
       <SpecificAnnouncement/>
       <Footer/>

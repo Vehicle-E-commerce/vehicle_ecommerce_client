@@ -4,6 +4,7 @@ import { LoginContext } from "../../contexts/Login";
 import { ICardData } from "../../interfaces";
 import { CardCar } from "./styles";
 
+
 const CardsCar = ({
   cover_image,
   title,
@@ -21,14 +22,14 @@ const CardsCar = ({
     updateAdModal,
     navigate,
   } = useContext(AnnouncementContext);
+  
   const { user } = useContext(LoginContext);
 
   return (
     <CardCar
       onClick={() => {
         setVehicleSpecific(data);
-        console.log(data)
-          localStorage.setItem("announcementID", data.id);
+        localStorage.setItem("announcementID", data.id);
       }}
     >
       <figure
@@ -41,12 +42,12 @@ const CardsCar = ({
       </figure>
       <h2>{title}</h2>
       <p>{bio}</p>
-      {vehicleSpecific?.user.id !== user?.id && (
+      {data?.user.id !== user?.id &&
         <div className="advertiser-box">
           <h2>{user_name && user_name[0].toLocaleUpperCase()}</h2>
           <h3>{user_name}</h3>
         </div>
-      )}
+      }
       <div className="data-box">
         <div className="km-date">
           <span>{mileage} KM</span>
@@ -54,7 +55,7 @@ const CardsCar = ({
         </div>
         <span className="value">R$ {price && price},00</span>
       </div>
-      {vehicleSpecific?.user.id === user?.id && (
+      {data?.user.id === user?.id &&
         <div className="btn-box">
           <button
             onClick={() => {
@@ -73,7 +74,7 @@ const CardsCar = ({
             Ver como
           </button>
         </div>
-      )}
+      }
     </CardCar>
   );
 };

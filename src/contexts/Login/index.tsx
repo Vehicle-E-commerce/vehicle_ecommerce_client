@@ -1,8 +1,10 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
-import { IUserLogin, IUserLoginContext, Props } from "../../interfaces";
+import { IUserLogin, IUserLoginContext, IUserUpdate, Props } from "../../interfaces";
+import { AnnouncementContext } from "../announcementContext";
 import api from "../../services/server";
+import { FieldValues, SubmitHandler } from "react-hook-form";
 
 export const LoginContext = createContext({} as IUserLoginContext);
 
@@ -10,6 +12,8 @@ export const LoginProvider: React.FC<Props> = ({ children }) => {
   const navigate = useNavigate();
   const [modal, setModal] = useState("login");
   const [user, setUser] = useState(null);
+
+  const {setUserEditModal, userEditModal} = useContext(AnnouncementContext);
 
   const signIn = async (data: IUserLogin) => {
     console.log(data);
@@ -41,6 +45,26 @@ export const LoginProvider: React.FC<Props> = ({ children }) => {
         });
       });
   };
+  const onSubmitUpdateUser: SubmitHandler<FieldValues> = async (data) => {
+    api.defaults.headers.Authorization = `bearer ${localStorage.getItem("@token")}`
+    api.patch("/user/", data)
+      .then((res) => {
+        setUserEditModal(false)
+        toast.success("Dados atualizados", {
+          style: {
+            borderRadius: "10px",
+            background: "var( --Grey-2)",
+            color: "var(--Grey-0)",
+            fontSize: "14px",
+            fontWeight: "700",
+          },
+        });
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
+
   const dataRender = async () => {
     api.defaults.headers.Authorization = `bearer ${localStorage.getItem('@token')}`
     await api.get("/user/")
@@ -65,7 +89,8 @@ export const LoginProvider: React.FC<Props> = ({ children }) => {
         modal,
         setModal,
         user,
-        logout
+        logout,
+        onSubmitUpdateUser
       }}
     >
       {children}
