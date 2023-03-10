@@ -1,3 +1,4 @@
+import { ReactNode } from "react";
 import { Dispatch, ReactNode, ReactPortal, SetStateAction } from "react";
 import { FieldValues, SubmitHandler } from "react-hook-form";
 import { NavigateFunction } from "react-router-dom";
@@ -16,8 +17,9 @@ export interface IUserLoginContext {
   modal: string;
   setModal: React.Dispatch<React.SetStateAction<string>>;
   signIn: (data: IUserLogin) => Promise<void>;
-  user: null | IUser;
-  logout: () => void;
+  user: null | IUser
+  logout: () => void
+  onSubmitUpdateUser: SubmitHandler<FieldValues>
 }
 
 export interface ThemesContextType {
@@ -75,6 +77,14 @@ export interface IUserRegisterData {
   confirm_password: string;
 }
 
+export interface IUserUpdate {
+  name: string,
+  email: string,
+  cpf: string,
+  telephone: string,
+  birth_date: string,
+  bio: string
+}
 export interface IAnnouncement {
   id: string;
   title: string;
