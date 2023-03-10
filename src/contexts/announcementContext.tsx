@@ -22,6 +22,7 @@ interface IAnnouncementContext {
   commentsByAnnouncement: (id_announcement: string) => Promise<void>
   catchExample: (event: any) => void
   onSubmitCreateComment: SubmitHandler<FieldValues>
+  onEditAd: SubmitHandler<FieldValues>
   onDeleteAd: () => void
 
   announcementList: never[] | IAnnouncement[]
@@ -63,7 +64,7 @@ interface IAnnouncement {
   images: IImages[];
   user: IUser;
 }
-interface IImages {
+export interface IImages {
   id: string;
   image: string;
   created_at: Date;
@@ -177,6 +178,26 @@ function AnnouncementProvider({children}: IAnnouncementProviders) {
         console.log(err)
       })
   }
+  const onEditAd: SubmitHandler<FieldValues> = (data) => {
+    api.defaults.headers.Authorization = `bearer ${localStorage.getItem("@token")}`
+    api.patch(`announcements/${vehicleSpecific!.id}`)
+      .then((res) => {
+  
+        toast.success("Anúncio editado!", {
+          style: {
+            borderRadius: "10px",
+            background: "var( --Grey-2)",
+            color: "var(--Grey-0)",
+            fontSize: "14px",
+            fontWeight: "700",
+          },
+        });
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
+
   const onDeleteAd = () => {
     api.defaults.headers.Authorization = `bearer ${localStorage.getItem("@token")}`
     api.delete(`announcements/${vehicleSpecific?.id}`)
@@ -236,6 +257,7 @@ function AnnouncementProvider({children}: IAnnouncementProviders) {
         commentsByAnnouncement,
         catchExample,
         onSubmitCreateComment,
+        onEditAd,
         onDeleteAd,
         setAnnouncementList,
         announcementList,

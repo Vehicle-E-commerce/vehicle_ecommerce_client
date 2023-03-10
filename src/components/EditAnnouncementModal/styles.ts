@@ -81,19 +81,30 @@ export const ContainerModalEdit = styled.div`
         border-radius: 4px;
         transition: 1s;
 
+      }
+      .btn-1, .btn-2{
         :hover {
           opacity: 70%;
           transition: 1s;
         }
       }
-      .btn-1 {
-        background-color: var(--brand1);
-        color: var(--whiteFixed);
-        border: 1px solid var(--brand1);
-      }
-      .btn-2 {
+      .btn-car {
         background-color: transparent;
+        
+      }
+      .btn-moto {
+        background-color: transparent;
+      }
+      .btnSelected{
+        border: 1px solid var(--brand1);
+        color: var(--whiteFixed);
+        background-color: var(--brand1);
+      }
+      .inative{
+        background-color: var(--grey5);
+        opacity: 0.3;
         border: 1px solid var(--grey4);
+        cursor: none;
       }
 
       .sale-auction {
