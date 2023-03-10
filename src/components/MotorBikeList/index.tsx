@@ -20,8 +20,8 @@ const MotorBikelist = () => {
   return (
     <ContainerMotorBikeList id="motorbike-list">
       <label>Motos</label>
-      <Slider {...settings}>
-        {motorbikeList.length === 0 ? (
+      <ul>
+      {motorbikeList.length === 0 ? (
           <div>Sem motos amostra</div>
         ) : (
           motorbikeList.map((motorbike) => (
@@ -38,7 +38,7 @@ const MotorBikelist = () => {
             />
           ))
         )}
-      </Slider>
+      </ul>
     </ContainerMotorBikeList>
   );
 };
