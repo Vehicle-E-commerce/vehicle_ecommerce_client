@@ -1,12 +1,86 @@
 import { ContainerModalEdit } from "./styles";
 import { VscClose } from "react-icons/vsc"
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AnnouncementContext } from "../../contexts/announcementContext";
+import { IImages } from "../../contexts/announcementContext";
+import { Input } from "../Input";
+import { useForm } from "react-hook-form";
 
+interface editAdverts {
+  type: string,
+  title: string,
+  year: number,
+  mileage: number;
+  price: number;
+  bio: string;
+  is_motorbike: boolean;
+  cover_image: string;
+  images: IImages[]
+
+}
 const EditAnnouncementModal = () => {
+  const { register, handleSubmit, formState: {errors}} = useForm();
+  const { setUpdateAdModal, onEditAd, vehicleSpecific, updateAdModal, setDeleteAdModal, deleteAdModal} = useContext(AnnouncementContext);
+  const { 
+    title, 
+    year, 
+    mileage, 
+    price, 
+    bio,
+    is_motorbike, 
+    cover_image, 
+    images, 
+  } = vehicleSpecific!
+  let [dataEdit, setDataEdit] = useState({ 
+    title, 
+    year, 
+    mileage, 
+    price, 
+    bio,
+    is_motorbike, 
+    cover_image, 
+    images, 
+  } )
+  const [motorBike, setMotorBike] = useState(vehicleSpecific?.is_motorbike)
 
-  const { setUpdateAdModal, updateAdModal, setDeleteAdModal, deleteAdModal} = useContext(AnnouncementContext);
+  const selectButton = (e:any)=>{
+    e.preventDefault()
+    const btnsCont = document.querySelector('.is_motorbike')
+    const btns = [...btnsCont!.children]
 
+    btns.forEach(el => {
+      el.classList.remove("btnSelected")
+      if(el === e.target){
+        e.target.classList.add("btnSelected")
+      }
+    })
+    if(e.target == document.querySelector('.btn-car')){
+      setDataEdit({
+        ...dataEdit,
+        ["is_motorbike"]: false
+      })
+    }else{
+      setDataEdit({
+        ...dataEdit,
+        ["is_motorbike"]: true
+      })
+    }
+    console.log(dataEdit)
+  }
+
+  const onchangeValue = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>)=>{
+    const {name, value} = e.target
+
+    setDataEdit({
+      ...dataEdit,
+      [name]: value
+
+    });
+  }
+  const onSubmit = (e: any) => {
+    e.preventDefault()
+    console.log(dataEdit)
+  }
   return (
     <ContainerModalEdit>
       <section>
@@ -21,8 +95,8 @@ const EditAnnouncementModal = () => {
 
           <h3>Tipo de anúncio</h3>
           <div className="sale-auction">
-            <button type="button" className="btn-1">Venda</button>
-            <button type="button" className="btn-2">Leilão</button>
+            <button type="button" className="btnSelected">Venda</button>
+            <button type="button" className="inative">Leilão</button>
           </div>
 
           <h3>Informações do veículo</h3>
@@ -30,10 +104,13 @@ const EditAnnouncementModal = () => {
           <form >
             <div className="title-box">
               <label>Título</label>
-              <input 
-                type="text" 
+              <Input 
+                type="text"
+                name="title" 
                 placeholder="Mercedes Benz A 200 CGI ADVANCE SEDAN Mercedes Benz A 200"
-              />
+                value={dataEdit.title}
+                onCharge={(e) => onchangeValue(e)}
+                />
             </div>
             <div className="year-km-price">
               <div className="responsive-box">
@@ -41,14 +118,18 @@ const EditAnnouncementModal = () => {
                   <label>Ano</label>
                   <input 
                     type="number"
-                    placeholder="2018" 
+                    name="year"
+                    value={dataEdit.year}
+                    onChange={(e) => onchangeValue(e)}
                   />
                 </div>
                 <div className="box">
                   <label>Quilometragem</label>
                   <input 
                     type="number" 
-                    placeholder="0"
+                    name="mileage"
+                    value={dataEdit.mileage}
+                    onChange={(e) => onchangeValue(e)}
                   />
                 </div>
               </div>
@@ -56,51 +137,72 @@ const EditAnnouncementModal = () => {
                 <label>Preço</label>
                 <input 
                   type="number" 
-                  placeholder="50.000,00"
+                  name="price"
+                  value={dataEdit.price}
+                  onChange={(e) => onchangeValue(e)}
                 />
               </div>
             </div>
             <div className="description-box">
               <label>Descrição</label>
               <textarea
-                placeholder="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+                name="bio"
+                value={dataEdit.bio}
+                onChange={(e) => onchangeValue(e)}  
               />
             </div>
             <div className="btn-box">
               <label>Tipo de veículo</label>
-              <div>
-                <button type="button" className="btn-1">Carro</button>
-                <button type="button" className="btn-2">Moto</button>
+              <div className="is_motorbike">
+                {}
+                <button 
+                  type="button" 
+                  className={`btn-car ${dataEdit.is_motorbike ? '' : 'btnSelected'}`}  
+                  onClick={(e)=> {
+                    setMotorBike(false);
+                    selectButton(e)
+                  }}
+                  >Carro</button>
+                <button 
+                  type="button" 
+                  className={`btn-moto ${dataEdit.is_motorbike ? 'btnSelected' : ''}`} 
+                  onClick={(e)=> {
+                    setMotorBike(true); 
+                    selectButton(e) 
+                  }}
+                  >Moto</button>
               </div>
             </div>
             <div className="btn-box">
               <label>Publicado</label>
               <div>
-                <button type="button" className="btn-2">Sim</button>
-                <button type="button" className="btn-1">Não</button>
+                <button type="button" className="inative">Sim</button>
+                <button type="button" className="inative">Não</button>
               </div>
             </div>
             <div className="img-box">
               <div>
                 <label>Imagem da capa</label>
                 <input 
-                  type="text" 
-                  placeholder="https://image.com"
+                  type="text"
+                  name="cover_image"
+                  value={dataEdit.cover_image}
+                  onChange={(e) => onchangeValue(e)}  
+             
                 />
               </div>
               <div>
-                <label>1° Imagem da galeria</label>
-                <input 
-                  type="text" 
-                  placeholder="https://image.com"
-                />
-              </div>
-              <div>
-                <label>2° Imagem da galeria</label>
-                <input 
-                  type="text" 
-                  placeholder="https://image.com"
-                />
+                {dataEdit.images.map((img, i)=>{
+                  return(<>
+                    <label>{i+1}° Imagem da galeria</label>
+                    <input 
+                      type="text" 
+                      name={`img-${i}`}
+                      value={img.image}
+                      onChange={(e) => onchangeValue(e)}
+                    />
+                  </>)
+                })}
               </div>
               <button type="button">
                 Adicionar campo para imagem da galeria
@@ -111,7 +213,9 @@ const EditAnnouncementModal = () => {
                 setUpdateAdModal(false)
                 setDeleteAdModal(!deleteAdModal)
               }}>Excluir anúncio</button>
-              <button type="submit" className="edit-btn">Salvar alterações</button>
+              <button type="submit" className="edit-btn" onClick={(e)=>onSubmit(e)}
+                
+              >Salvar alterações</button>
             </div>
           </form>
         </div>

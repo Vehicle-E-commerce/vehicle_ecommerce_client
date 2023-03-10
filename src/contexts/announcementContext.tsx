@@ -97,7 +97,31 @@ function AnnouncementProvider({ children }: IAnnouncementProviders) {
         console.log(err)
       })
   }
+
+  const onEditAd: SubmitHandler<FieldValues> = (data) => {
+    api.defaults.headers.Authorization = `bearer ${localStorage.getItem("@token")}`
+    api.patch(`announcements/${vehicleSpecific!.id}`)
+      .then((res) => {
+  
+        toast.success("Anúncio editado!", {
+          style: {
+            borderRadius: "10px",
+            background: "var( --Grey-2)",
+            color: "var(--Grey-0)",
+            fontSize: "14px",
+            fontWeight: "700",
+          },
+        });
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
+
+  const onDeleteAd = () => {
+
   const onSubmitUpdateComment: SubmitHandler<FieldValues> = (data) => {
+
     api.defaults.headers.Authorization = `bearer ${localStorage.getItem("@token")}`
     console.log(commentSelect)
     api.patch(`announcement/comment/${commentSelect}`, data)
@@ -222,7 +246,10 @@ function AnnouncementProvider({ children }: IAnnouncementProviders) {
         commentsByAnnouncement,
         catchExample,
         onSubmitCreateComment,
+        onEditAd,
+
         onSubmitUpdateComment,
+
         onDeleteAd,
         onDeleteComment,
         setAnnouncementList,
