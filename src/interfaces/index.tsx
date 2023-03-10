@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import { FieldValues, SubmitHandler } from "react-hook-form";
 import { DefaultTheme } from "styled-components";
 import { IUser } from "../contexts/announcementContext";
 
@@ -17,6 +18,7 @@ export interface IUserLoginContext {
   signIn: (data: IUserLogin) => Promise<void>;
   user: null | IUser
   logout: () => void
+  onSubmitUpdateUser: SubmitHandler<FieldValues>
 }
 
 export interface ThemesContextType {
@@ -72,4 +74,13 @@ export interface IUserRegisterData {
   is_announcement: boolean;
   password: string;
   confirm_password: string;
+}
+
+export interface IUserUpdate {
+  name: string,
+  email: string,
+  cpf: string,
+  telephone: string,
+  birth_date: string,
+  bio: string
 }
