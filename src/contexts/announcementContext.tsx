@@ -112,6 +112,7 @@ function AnnouncementProvider({ children }: IAnnouncementProviders) {
           },
         });
         setCommentModal(!commentModal)
+        setNewComment(!newComment)
       })
       .catch((err) => {
         console.log(err)
@@ -131,6 +132,7 @@ function AnnouncementProvider({ children }: IAnnouncementProviders) {
             fontWeight: "700",
           },
         });
+        setNewComment(!newComment)
       })
   }
   const onDeleteAd = () => {
