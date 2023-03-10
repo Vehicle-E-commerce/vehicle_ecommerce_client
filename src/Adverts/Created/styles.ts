@@ -2,9 +2,12 @@ import styled from "styled-components";
 
 export const ContainerCreatedAnnouncement = styled.div`
   display: flex;
+  position: absolute;
+  top: 0px;
+  left: 0px;
 
   width: 100vw;
-  height: 1533px;
+  height: 2148px;
 
   background-color: rgba(0, 0, 0, 0.5);
 
