@@ -1,167 +1,86 @@
-import {
-  createContext,
-  ReactNode,
-  ReactPortal,
-  SetStateAction,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { FieldValues, SubmitHandler } from "react-hook-form";
 import { toast } from "react-hot-toast";
-import { NavigateFunction, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import {
+  IAnnouncement,
+  IAnnouncementContext,
+  IAnnouncementProviders,
+  IComment,
+} from "../interfaces";
 import api from "../services/server";
 import { LoginContext } from "./Login";
 
-
-interface IAnnouncementProviders {
-  children: ReactNode | ReactPortal;
-}
-interface IAnnouncementContext {
-  navigate: NavigateFunction
-  commentsByAnnouncement: (id_announcement: string) => Promise<void>
-  catchExample: (event: any) => void
-  onSubmitCreateComment: SubmitHandler<FieldValues>
-  onDeleteAd: () => void
-
-  announcementList: never[] | IAnnouncement[]
-  setAnnouncementList: React.Dispatch<React.SetStateAction<never[]>>
-  carList: never[] | IAnnouncement[]
-  setCarList: React.Dispatch<React.SetStateAction<never[]>>
-  motorbikeList: never[] | IAnnouncement[]
-  setMotorbikeList: React.Dispatch<React.SetStateAction<never[] >> 
-  vehicleSpecific: null | IAnnouncement
-  setVehicleSpecific: React.Dispatch<React.SetStateAction<null>>
-  imageToModal: string
-  setImageToModal: React.Dispatch<SetStateAction<string>>
-  imageModal: boolean
-  setImageModal: React.Dispatch<SetStateAction<boolean>>
-  commentsAd: never[] | IComment[]
-  setCommentsAd: React.Dispatch<SetStateAction<never[]>>
-  exampleComment: string
-  setExampleComment: React.Dispatch<SetStateAction<string>>
-  userEditModal: boolean
-  setUserEditModal: React.Dispatch<SetStateAction<boolean>>
-  userEditAddress: boolean
-  setUserEditAddress: React.Dispatch<SetStateAction<boolean>>
-  updateAdModal: boolean
-  setUpdateAdModal: React.Dispatch<SetStateAction<boolean>>
-  deleteAdModal: boolean
-  setDeleteAdModal: React.Dispatch<SetStateAction<boolean>>
-}
-interface IAnnouncement {
-  id: string;
-  title: string;
-  year: number;
-  mileage: number;
-  price: number;
-  bio: string;
-  is_motorbike: boolean;
-  cover_image: string;
-  created_at: Date;
-  updated_at: Date;
-  images: IImages[];
-  user: IUser;
-}
-interface IImages {
-  id: string;
-  image: string;
-  created_at: Date;
-  updated_at: Date;
-}
-export interface IUser {
-  id: string;
-  name: string;
-  email: string;
-  cpf: string;
-  telephone: string;
-  birth_date: string;
-  bio: string;
-  is_advertiser: boolean;
-  created_at: Date;
-  updated_at: Date;
-  address: IAddress;
-}
-export interface IAddress {
-  id: string;
-  cep: string;
-  state: string;
-  city: string;
-  road: string;
-  number: string;
-  complement: string;
-  created_at: Date;
-  updated_at: Date;
-}
-interface IComment {
-  id: string,
-  announcement: IAnnouncement
-  comment: string,
-  created_at: Date,
-  updated_at: Date
-  user: IUser
-}
-
-export interface ICardData {
-  cover_image: string;
-  title: string;
-  year: number;
-  mileage: number;
-  price: number;
-  bio: string;
-  user_name: string;
-  data: SetStateAction<null>;
-}
-export interface ICommentData {
-  userName: string,
-  date: Date,
-  comment: string
-}
-
-export const AnnouncementContext = createContext<IAnnouncementContext>({} as IAnnouncementContext);
-
-function AnnouncementProvider({children}: IAnnouncementProviders) {
-  
+export const AnnouncementContext = createContext<IAnnouncementContext>(
+  {} as IAnnouncementContext
+);
+ 
+function AnnouncementProvider({ children }: IAnnouncementProviders) {
   const { user } = useContext(LoginContext);
 
   const navigate = useNavigate();
-  
-  const [announcementList, setAnnouncementList] = useState([])
-  const [carList, setCarList] = useState([])
-  const [motorbikeList, setMotorbikeList] = useState([])
-  const [commentsAd, setCommentsAd] = useState([])
-  const [vehicleSpecific, setVehicleSpecific] = useState(null)
-  const [imageToModal, setImageToModal] = useState('')
-  const [imageModal, setImageModal] = useState(false)
-  const [userEditModal, setUserEditModal] = useState(false)
-  const [userEditAddress, setUserEditAddress] = useState(false)
-  const [updateAdModal, setUpdateAdModal] = useState(false)
-  const [deleteAdModal, setDeleteAdModal] = useState(false)
-  const [exampleComment, setExampleComment] = useState('')
-  
-  document.onkeydown = function(e) {
-    if(e.key === 'Escape') {
-      setImageModal(false)
-      setUserEditAddress(false)
-      setUserEditModal(false)
-      setUpdateAdModal(false)
+
+  const [announcementList, setAnnouncementList] = useState<IAnnouncement[]>([]);
+  const [carList, setCarList] = useState<IAnnouncement[]>([]);
+  const [motorbikeList, setMotorbikeList] = useState<IAnnouncement[]>([]);
+  const [commentsAd, setCommentsAd] = useState<IComment[]>([]);
+  const [vehicleSpecific, setVehicleSpecific] = useState<IAnnouncement | null>(
+    null
+  );
+  const [imageToModal, setImageToModal] = useState("");
+  const [imageModal, setImageModal] = useState(false);
+  const [userEditModal, setUserEditModal] = useState(false);
+  const [userEditAddress, setUserEditAddress] = useState(false);
+  const [updateAdModal, setUpdateAdModal] = useState(false);
+  const [deleteAdModal, setDeleteAdModal] = useState(false);
+  const [exampleComment, setExampleComment] = useState("");
+  const [isCreateAnnou, setIsCreateAnnou] = useState(false);
+  const [commentSelect, setCommentSelect] = useState('')
+  const [commentModal, setCommentModal] = useState(false)
+  const [carListUser, setCarListUser] = useState([])
+  const [motorBikeListUser, setMotorBikeListUser] = useState([])
+  const [carListRandomUser, setCarListRandomUser] = useState([])
+  const [motorBikeListRandomUser, setMotorBikeListRandomUser] = useState([])
+  const [newComment, setNewComment] = useState(false)
+
+  document.onkeydown = function (e) {
+    if (e.key === "Escape") {
+      setImageModal(false);
+      setUserEditAddress(false);
+      setUserEditModal(false);
+      setUpdateAdModal(false);
+      setCommentModal(false);
     }
   };
   
-  const catchExample = (event:any) => {
-    const example = event.target.getAttribute("data-valor");
-    if(example){
-      setExampleComment(example)
+  useEffect(() => {
+    if(user) {
+      setCarListUser(carList.filter((car) => car.user.id === user.id))
+      setMotorBikeListUser(motorbikeList.filter((motor) => motor.user.id === user.id))
     }
-  }
+    if(vehicleSpecific) {
+      setCarListRandomUser(carList.filter((car) => car.user.id === vehicleSpecific.user.id))
+      setMotorBikeListRandomUser(motorbikeList.filter((motor) => motor.user.id === vehicleSpecific.user.id))
+    }
+  }, [user, vehicleSpecific])
+
+  const catchExample = (event: any) => {
+    const example = event.target.getAttribute("data-valor");
+    if (example) {
+      setExampleComment(example);
+    }
+  };
 
   const onSubmitCreateComment: SubmitHandler<FieldValues> = (data) => {
-    if(!user) {
-      navigate("login", {replace: true})
+    if (!user) {
+      navigate("login", { replace: true });
       return;
     }
-    api.defaults.headers.Authorization = `bearer ${localStorage.getItem("@token")}`
-    api.post(`announcement/${vehicleSpecific?.id}/comment/`, data)
+    api.defaults.headers.Authorization = `bearer ${localStorage.getItem(
+      "@token"
+    )}`;
+    api
+      .post(`announcement/${vehicleSpecific?.id}/comment/`, data)
       .then((res) => {
         toast.success("Comentário adicionado!", {
           style: {
@@ -172,16 +91,56 @@ function AnnouncementProvider({children}: IAnnouncementProviders) {
             fontWeight: "700",
           },
         });
+        setNewComment(!newComment)
       })
       .catch((err) => {
         console.log(err)
       })
   }
-  const onDeleteAd = () => {
+  const onSubmitUpdateComment: SubmitHandler<FieldValues> = (data) => {
     api.defaults.headers.Authorization = `bearer ${localStorage.getItem("@token")}`
-    api.delete(`announcements/${vehicleSpecific?.id}`)
+    console.log(commentSelect)
+    api.patch(`announcement/comment/${commentSelect}`, data)
       .then((res) => {
-        setDeleteAdModal(false)
+        toast.success("Comentário atualizado!", {
+          style: {
+            borderRadius: "10px",
+            background: "var( --Grey-2)",
+            color: "var(--Grey-0)",
+            fontSize: "14px",
+            fontWeight: "700",
+          },
+        });
+        setCommentModal(!commentModal)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
+  const onDeleteComment = () => {
+    api.defaults.headers.Authorization = `bearer ${localStorage.getItem("@token")}`
+    api.delete(`announcement/comment/${commentSelect}`)
+      .then(() => {
+        setCommentModal(!commentModal)
+        toast.success("Comentário apagado!", {
+          style: {
+            borderRadius: "10px",
+            background: "var( --Grey-2)",
+            color: "var(--Grey-0)",
+            fontSize: "14px",
+            fontWeight: "700",
+          },
+        });
+      })
+  }
+  const onDeleteAd = () => {
+    api.defaults.headers.Authorization = `bearer ${localStorage.getItem(
+      "@token"
+    )}`;
+    api
+      .delete(`announcements/${vehicleSpecific?.id}`)
+      .then((res) => {
+        setDeleteAdModal(false);
         toast.success("Anúncio apagado!", {
           style: {
             borderRadius: "10px",
@@ -193,26 +152,28 @@ function AnnouncementProvider({children}: IAnnouncementProviders) {
         });
       })
       .catch((err) => {
-        console.log(err)
-      })
-  }
-  
-  
-  const commentsByAnnouncement = async (id_announcement: any): Promise<any> => {
+        console.log(err);
+      });
+  };
+
+  const commentsByAnnouncement = async (
+    id_announcement: string | undefined
+  ): Promise<any> => {
     const res = await api.get(`announcement/${id_announcement}/comments/`);
     return res.data;
   };
-  
+
   useEffect(() => {
     commentsByAnnouncement(vehicleSpecific?.id)
       .then((comments) => {
         setCommentsAd(comments);
       })
       .catch((err) => console.log(err));
-  }, [vehicleSpecific?.id]);
+  }, [newComment, vehicleSpecific]);
 
-  const announcementData = async ():Promise<void> => {
-    await api.get("announcements/") 
+  const announcementData = async (): Promise<void> => {
+    await api
+      .get("announcements/")
       .then((res) => {
         setAnnouncementList(res.data);
         setCarList(
@@ -222,12 +183,35 @@ function AnnouncementProvider({children}: IAnnouncementProviders) {
           res.data.filter((data: IAnnouncement) => data.is_motorbike)
         );
       })
-      .catch((err) => {console.log(err)})
-  }
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const announcement = async (): Promise<void> => {
+    await api
+      .get(`announcements/${localStorage.getItem("announcementID")}`)
+      .then((res) => {
+        setVehicleSpecific(res.data);
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   useEffect(() => {
     announcementData();
-  }, []);
+    announcement();
+  }, [localStorage.getItem("announcementID")]);
+
+  const openAndClosedModalCreateAnnou = () => {
+    if (isCreateAnnou) {
+      setIsCreateAnnou(false);
+    } else {
+      setIsCreateAnnou(true);
+    }
+  };
 
   return (
     <AnnouncementContext.Provider
@@ -236,7 +220,9 @@ function AnnouncementProvider({children}: IAnnouncementProviders) {
         commentsByAnnouncement,
         catchExample,
         onSubmitCreateComment,
+        onSubmitUpdateComment,
         onDeleteAd,
+        onDeleteComment,
         setAnnouncementList,
         announcementList,
         setCarList,
@@ -260,7 +246,21 @@ function AnnouncementProvider({children}: IAnnouncementProviders) {
         setUpdateAdModal,
         updateAdModal,
         setDeleteAdModal,
-        deleteAdModal
+        deleteAdModal,
+        setCarListUser,
+        carListUser,
+        setMotorBikeListUser,
+        motorBikeListUser,
+        setCarListRandomUser,
+        carListRandomUser,
+        setMotorBikeListRandomUser,
+        motorBikeListRandomUser,
+        setCommentModal,
+        commentModal,
+        setCommentSelect,
+        commentSelect,
+        openAndClosedModalCreateAnnou,
+        isCreateAnnou,
       }
     }>
       {children}

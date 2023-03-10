@@ -2,8 +2,8 @@ import { useContext } from "react"
 import { AnnouncementContext } from "../../contexts/announcementContext"
 import { LoginContext } from "../../contexts/Login"
 import AuctionList from "../AuctionList"
-import Carlist from "../CarList"
-import MotorBikelist from "../MotorBikeList"
+import CarlistRandomUser from "../CarListRandomUser"
+import MotorBikelistRandomUser from "../MotorBikeListRandomUser"
 import { ContainerArticleUser, ContainerMainUserAnnouncement } from "./styles"
 
 const MainRandomUserAnnouncement = () => {
@@ -25,8 +25,8 @@ const MainRandomUserAnnouncement = () => {
         }
       </ContainerArticleUser>
       <AuctionList/>
-      <Carlist/>
-      <MotorBikelist/>
+      <CarlistRandomUser/>
+      <MotorBikelistRandomUser/>
     </ContainerMainUserAnnouncement>
   )
 }

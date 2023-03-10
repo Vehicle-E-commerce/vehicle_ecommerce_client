@@ -11,6 +11,17 @@ export const ContainerComment = styled.li`
     align-items: center;
     gap: 8px;
 
+    svg {
+      cursor: pointer;
+      background-color: var(--grey2);
+      color: var(--whiteFixed);
+      border-radius: 7px;
+
+      :hover {
+        color: var(--brand1);
+        background-color: var(--grey4);
+      }
+    }
     h2 {
       width: 32px;
       height: 32px;
