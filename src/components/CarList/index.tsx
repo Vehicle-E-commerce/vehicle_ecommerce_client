@@ -20,7 +20,7 @@ const Carlist = () => {
   return (
     <ContainerCarList id="car-list">
       <label>Carros</label>
-      <Slider {...settings}>
+      <ul>
         {carList.length === 0 ? (
           <div>Sem carros amostra</div>
         ) : (
@@ -38,7 +38,7 @@ const Carlist = () => {
             />
           ))
         )}
-      </Slider>
+      </ul>
     </ContainerCarList>
   );
 };

@@ -118,8 +118,6 @@ function AnnouncementProvider({ children }: IAnnouncementProviders) {
       })
   }
 
-  const onDeleteAd = () => {
-
   const onSubmitUpdateComment: SubmitHandler<FieldValues> = (data) => {
 
     api.defaults.headers.Authorization = `bearer ${localStorage.getItem("@token")}`
